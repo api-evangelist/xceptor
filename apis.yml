@@ -1,0 +1,101 @@
+name: Xceptor
+description: Xceptor is a data automation platform that helps organizations extract, transform, and integrate data from various sources, particularly focused on document processing and financial data automation.
+image: https://www.xceptor.com/images/xceptor-logo.png
+url: https://www.xceptor.com
+created: '2024'
+modified: '2024'
+tags:
+- data automation
+- document processing
+- financial data
+- data extraction
+- API integration
+- ETL
+apis:
+- name: Xceptor REST API
+  description: RESTful API for managing data processing workflows, document ingestion, and data extraction in Xceptor
+  baseURL: https://api.xceptor.com/v1
+  humanURL: https://www.xceptor.com/api
+  documentation: https://docs.xceptor.com/api/rest
+  properties:
+  - type: Documentation
+    url: https://docs.xceptor.com/api/rest
+  - type: OpenAPI
+    url: https://api.xceptor.com/v1/openapi.json
+  - type: Authentication
+    url: https://docs.xceptor.com/api/authentication
+  contact:
+  - type: Support
+    url: https://www.xceptor.com/support
+  - type: Email
+    url: mailto:api-support@xceptor.com
+  tags:
+  - REST
+  - workflows
+  - documents
+  - data processing
+- name: Xceptor Workflow API
+  description: API for creating, managing, and executing data processing workflows
+  baseURL: https://api.xceptor.com/v1/workflows
+  humanURL: https://www.xceptor.com/workflows
+  documentation: https://docs.xceptor.com/api/workflows
+  properties:
+  - type: Documentation
+    url: https://docs.xceptor.com/api/workflows
+  - type: Postman Collection
+    url: https://www.postman.com/xceptor/workspace/workflows
+  tags:
+  - workflows
+  - automation
+  - orchestration
+- name: Xceptor Document Upload API
+  description: API for uploading and processing documents through Xceptor's data extraction engine
+  baseURL: https://api.xceptor.com/v1/documents
+  humanURL: https://www.xceptor.com/documents
+  documentation: https://docs.xceptor.com/api/documents
+  properties:
+  - type: Documentation
+    url: https://docs.xceptor.com/api/documents
+  - type: Examples
+    url: https://docs.xceptor.com/api/examples/documents
+  tags:
+  - documents
+  - upload
+  - extraction
+  - OCR
+- name: Xceptor Data Export API
+  description: API for exporting processed data in various formats
+  baseURL: https://api.xceptor.com/v1/export
+  humanURL: https://www.xceptor.com/export
+  documentation: https://docs.xceptor.com/api/export
+  properties:
+  - type: Documentation
+    url: https://docs.xceptor.com/api/export
+  - type: Formats
+    url: https://docs.xceptor.com/api/export-formats
+  tags:
+  - export
+  - data
+  - integration
+common:
+- type: Portal
+  url: https://portal.xceptor.com
+- type: Getting Started
+  url: https://docs.xceptor.com/getting-started
+- type: Authentication
+  url: https://docs.xceptor.com/authentication
+- type: Rate Limits
+  url: https://docs.xceptor.com/rate-limits
+- type: Status Page
+  url: https://status.xceptor.com
+- type: Terms of Service
+  url: https://www.xceptor.com/terms
+- type: Privacy Policy
+  url: https://www.xceptor.com/privacy
+- type: Contact
+  url: https://www.xceptor.com/contact
+maintainers:
+- name: Xceptor API Team
+  email: api@xceptor.com
+  url: https://www.xceptor.com
+include: []
