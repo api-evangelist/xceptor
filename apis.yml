@@ -1,19 +1,35 @@
 name: Xceptor
-description: Xceptor is a data automation platform that helps organizations extract, transform, and integrate data from various sources, particularly focused on document processing and financial data automation.
+description: >-
+  Xceptor is a data automation platform that helps organizations extract,
+  transform, and integrate data from various sources, particularly focused on
+  document processing and financial data automation. Serving nearly 125 clients
+  and over 11,500 users across 60 countries, Xceptor empowers financial
+  institutions including banks, asset managers, hedge funds, custodians, and
+  securities services firms to automate reconciliations, confirmations, tax
+  processing, client onboarding, trade operations, and regulatory reporting.
 image: https://www.xceptor.com/images/xceptor-logo.png
 url: https://www.xceptor.com
 created: '2024'
-modified: '2024'
+modified: '2026-03-04'
 tags:
-- data automation
-- document processing
-- financial data
-- data extraction
-- API integration
+- Data Automation
+- Document Processing
+- Financial Data
+- Data Extraction
+- API Integration
 - ETL
+- Financial Services
+- Reconciliations
+- Trade Operations
+- Intelligent Document Processing
 apis:
 - name: Xceptor REST API
-  description: RESTful API for managing data processing workflows, document ingestion, and data extraction in Xceptor
+  description: >-
+    RESTful API for managing data processing workflows, document ingestion,
+    and data extraction in Xceptor. Provides programmatic access to the
+    Xceptor data automation platform for integrating with existing systems
+    and orchestrating automated data processing pipelines.
+  image: https://www.xceptor.com/images/xceptor-logo.png
   baseURL: https://api.xceptor.com/v1
   humanURL: https://www.xceptor.com/api
   documentation: https://docs.xceptor.com/api/rest
@@ -31,11 +47,16 @@ apis:
     url: mailto:api-support@xceptor.com
   tags:
   - REST
-  - workflows
-  - documents
-  - data processing
+  - Workflows
+  - Documents
+  - Data Processing
 - name: Xceptor Workflow API
-  description: API for creating, managing, and executing data processing workflows
+  description: >-
+    API for creating, managing, and executing data processing workflows
+    within the Xceptor platform. Enables programmatic orchestration of
+    automated data processing pipelines including event-driven triggers
+    and business rules execution.
+  image: https://www.xceptor.com/images/xceptor-logo.png
   baseURL: https://api.xceptor.com/v1/workflows
   humanURL: https://www.xceptor.com/workflows
   documentation: https://docs.xceptor.com/api/workflows
@@ -45,11 +66,16 @@ apis:
   - type: Postman Collection
     url: https://www.postman.com/xceptor/workspace/workflows
   tags:
-  - workflows
-  - automation
-  - orchestration
+  - Workflows
+  - Automation
+  - Orchestration
 - name: Xceptor Document Upload API
-  description: API for uploading and processing documents through Xceptor's data extraction engine
+  description: >-
+    API for uploading and processing documents through Xceptor's data
+    extraction engine. Supports intelligent document processing using NLP,
+    OCR, and generative AI to transform unstructured documents including
+    PDFs, emails, and spreadsheets into structured, trusted data.
+  image: https://www.xceptor.com/images/xceptor-logo.png
   baseURL: https://api.xceptor.com/v1/documents
   humanURL: https://www.xceptor.com/documents
   documentation: https://docs.xceptor.com/api/documents
@@ -59,12 +85,17 @@ apis:
   - type: Examples
     url: https://docs.xceptor.com/api/examples/documents
   tags:
-  - documents
-  - upload
-  - extraction
+  - Documents
+  - Upload
+  - Extraction
   - OCR
 - name: Xceptor Data Export API
-  description: API for exporting processed data in various formats
+  description: >-
+    API for exporting processed data in various formats. Supports output to
+    multiple downstream systems and data formats including XML, JSON, CSV,
+    and Excel for integration with trading platforms, data warehouses, and
+    regulatory reporting systems.
+  image: https://www.xceptor.com/images/xceptor-logo.png
   baseURL: https://api.xceptor.com/v1/export
   humanURL: https://www.xceptor.com/export
   documentation: https://docs.xceptor.com/api/export
@@ -74,9 +105,29 @@ apis:
   - type: Formats
     url: https://docs.xceptor.com/api/export-formats
   tags:
-  - export
-  - data
-  - integration
+  - Export
+  - Data
+  - Integration
+- name: Xceptor Connector API
+  description: >-
+    API and connector framework for integrating Xceptor with external systems
+    and data sources. Provides pre-built connectors for cloud storage (AWS S3,
+    Azure Blob, Google Cloud Storage), messaging systems (Kafka, RabbitMQ),
+    databases (SQL Server, Snowflake), and financial industry protocols
+    (SWIFT 15022 and 20022). Enables bidirectional data exchange with the
+    Xceptor platform.
+  image: https://www.xceptor.com/images/xceptor-logo.png
+  baseURL: https://api.xceptor.com/v1
+  humanURL: https://www.xceptor.com/platform/connectors
+  properties:
+  - type: Documentation
+    url: https://www.xceptor.com/platform/connectors
+  tags:
+  - Connectors
+  - Integration
+  - Cloud
+  - SWIFT
+  - Financial Data
 common:
 - type: Portal
   url: https://portal.xceptor.com
@@ -89,13 +140,50 @@ common:
 - type: Status Page
   url: https://status.xceptor.com
 - type: Terms of Service
-  url: https://www.xceptor.com/terms
+  url: https://www.xceptor.com/legal-tcs
 - type: Privacy Policy
-  url: https://www.xceptor.com/privacy
+  url: https://www.xceptor.com/privacy-policy
 - type: Contact
-  url: https://www.xceptor.com/contact
-maintainers:
-- name: Xceptor API Team
-  email: api@xceptor.com
+  url: https://www.xceptor.com/contact-us
+- type: Website
   url: https://www.xceptor.com
+- type: Platform
+  url: https://www.xceptor.com/platform
+- type: Solutions
+  url: https://www.xceptor.com/solutions
+- type: Blog
+  url: https://www.xceptor.com/blogs
+- type: Newsroom
+  url: https://www.xceptor.com/company/newsroom
+- type: Support
+  url: https://xceptor.zendesk.com/hc/en-gb
+- type: Training
+  url: https://www.xceptor.com/support/training
+- type: Community
+  url: https://connect.xceptor.com
+- type: Academy
+  url: https://academy.xceptor.com/learn
+- type: Resources
+  url: https://www.xceptor.com/resources
+- type: Glossary
+  url: https://www.xceptor.com/resources/glossary
+- type: Webinars
+  url: https://www.xceptor.com/resources/webinars
+- type: Videos
+  url: https://www.xceptor.com/resources/videos
+- type: About
+  url: https://www.xceptor.com/about
+- type: Partners
+  url: https://www.xceptor.com/find-a-partner
+- type: LinkedIn
+  url: https://www.linkedin.com/company/xceptor
+- type: X
+  url: https://x.com/xceptor
+- type: Connector Marketplace
+  url: https://app.xceptor.cloud/xsllibrary/mx/home/
+- type: Azure Marketplace
+  url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/xceptor.xceptor
+maintainers:
+- name: Kin Lane
+  email: kin@apievangelist.com
 include: []
