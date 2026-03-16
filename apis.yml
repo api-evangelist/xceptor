@@ -1,3 +1,4 @@
+aid: xceptor
 name: Xceptor
 description: >-
   Xceptor is a data automation platform that helps organizations extract,
@@ -7,10 +8,12 @@ description: >-
   institutions including banks, asset managers, hedge funds, custodians, and
   securities services firms to automate reconciliations, confirmations, tax
   processing, client onboarding, trade operations, and regulatory reporting.
-image: https://www.xceptor.com/images/xceptor-logo.png
-url: https://www.xceptor.com
-created: '2024'
-modified: '2026-03-04'
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/xceptor/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 tags:
 - Data Automation
 - Document Processing
