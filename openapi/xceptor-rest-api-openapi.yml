@@ -25,10 +25,6 @@ tags:
     description: >-
       Operations for authenticating with the Xceptor platform and managing
       access tokens.
-  - name: Jobs
-    description: >-
-      Operations for creating, monitoring, and managing data processing jobs
-      that execute within the Xceptor platform.
   - name: Data Sources
     description: >-
       Operations for configuring and managing connections to external data
@@ -37,6 +33,10 @@ tags:
     description: >-
       Operations for checking the health and status of the Xceptor API
       services.
+  - name: Jobs
+    description: >-
+      Operations for creating, monitoring, and managing data processing jobs
+      that execute within the Xceptor platform.
 security:
   - bearerAuth: []
 paths:

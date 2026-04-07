@@ -11,16 +11,16 @@ created: '2024-01-01'
 modified: '2026-03-16'
 specificationVersion: '0.19'
 tags:
-  - Data Automation
-  - Document Processing
-  - Financial Data
-  - Data Extraction
   - API Integration
+  - Data Automation
+  - Data Extraction
+  - Document Processing
   - ETL
+  - Financial Data
   - Financial Services
+  - Intelligent Document Processing
   - Reconciliations
   - Trade Operations
-  - Intelligent Document Processing
 apis:
   - name: Xceptor REST API
     description: >-
@@ -45,10 +45,10 @@ apis:
       - type: Email
         url: mailto:api-support@xceptor.com
     tags:
+      - Data Processing
+      - Documents
       - REST
       - Workflows
-      - Documents
-      - Data Processing
   - name: Xceptor Workflow API
     description: >-
       API for creating, managing, and executing data processing workflows
@@ -65,9 +65,9 @@ apis:
       - type: Postman Collection
         url: https://www.postman.com/xceptor/workspace/workflows
     tags:
-      - Workflows
       - Automation
       - Orchestration
+      - Workflows
   - name: Xceptor Document Upload API
     description: >-
       API for uploading and processing documents through Xceptor's data
@@ -85,9 +85,9 @@ apis:
         url: https://docs.xceptor.com/api/examples/documents
     tags:
       - Documents
-      - Upload
       - Extraction
       - OCR
+      - Upload
   - name: Xceptor Data Export API
     description: >-
       API for exporting processed data in various formats. Supports output to
@@ -104,8 +104,8 @@ apis:
       - type: Formats
         url: https://docs.xceptor.com/api/export-formats
     tags:
-      - Export
       - Data
+      - Export
       - Integration
   - name: Xceptor Connector API
     description: >-
@@ -122,11 +122,11 @@ apis:
       - type: Documentation
         url: https://www.xceptor.com/platform/connectors
     tags:
-      - Connectors
-      - Integration
       - Cloud
-      - SWIFT
+      - Connectors
       - Financial Data
+      - Integration
+      - SWIFT
 common:
   - type: Portal
     url: https://portal.xceptor.com
@@ -181,8 +181,7 @@ common:
   - type: Connector Marketplace
     url: https://app.xceptor.cloud/xsllibrary/mx/home/
   - type: Azure Marketplace
-    url: 
-      https://azuremarketplace.microsoft.com/en-us/marketplace/apps/xceptor.xceptor
+    url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/xceptor.xceptor
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com

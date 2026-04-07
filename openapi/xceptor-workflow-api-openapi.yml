@@ -21,10 +21,6 @@ servers:
   - url: https://api.xceptor.com/v1
     description: Production Server
 tags:
-  - name: Workflows
-    description: >-
-      Operations for creating, updating, listing, and deleting workflow
-      definitions.
   - name: Workflow Runs
     description: >-
       Operations for executing workflows, monitoring run status, and
@@ -33,6 +29,10 @@ tags:
     description: >-
       Operations for managing the individual processing steps that compose
       a workflow, including step ordering and configuration.
+  - name: Workflows
+    description: >-
+      Operations for creating, updating, listing, and deleting workflow
+      definitions.
 security:
   - bearerAuth: []
 paths:
