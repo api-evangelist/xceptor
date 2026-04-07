@@ -39,7 +39,7 @@ paths:
   /workflows:
     get:
       operationId: listWorkflows
-      summary: List workflows
+      summary: Xceptor List workflows
       description: >-
         Retrieves a paginated list of workflow definitions configured in the
         Xceptor platform. Workflows can be filtered by status, category, and
@@ -83,7 +83,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createWorkflow
-      summary: Create a workflow
+      summary: Xceptor Create a workflow
       description: >-
         Creates a new workflow definition in the Xceptor platform. A workflow
         defines a sequence of processing steps that are executed in order to
@@ -119,7 +119,7 @@ paths:
   /workflows/{workflowId}:
     get:
       operationId: getWorkflow
-      summary: Get workflow details
+      summary: Xceptor Get workflow details
       description: >-
         Retrieves the full definition of a specific workflow, including its
         steps, trigger configuration, and associated metadata.
@@ -148,7 +148,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateWorkflow
-      summary: Update a workflow
+      summary: Xceptor Update a workflow
       description: >-
         Updates an existing workflow definition. Changes to active workflows
         take effect on subsequent runs. Running instances continue to use
@@ -190,7 +190,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteWorkflow
-      summary: Delete a workflow
+      summary: Xceptor Delete a workflow
       description: >-
         Deletes a workflow definition. Active workflows must be deactivated
         before deletion. Any running instances will complete before the
@@ -217,7 +217,7 @@ paths:
   /workflows/{workflowId}/runs:
     get:
       operationId: listWorkflowRuns
-      summary: List workflow runs
+      summary: Xceptor List workflow runs
       description: >-
         Retrieves a paginated list of execution runs for a specific workflow.
         Each run represents a single execution of the workflow and includes
@@ -260,7 +260,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: executeWorkflow
-      summary: Execute a workflow
+      summary: Xceptor Execute a workflow
       description: >-
         Triggers an execution run of the specified workflow. The workflow
         is executed asynchronously and the run status can be monitored
@@ -303,7 +303,7 @@ paths:
   /workflows/{workflowId}/runs/{runId}:
     get:
       operationId: getWorkflowRun
-      summary: Get workflow run details
+      summary: Xceptor Get workflow run details
       description: >-
         Retrieves the details and current status of a specific workflow run,
         including step-level progress, timing information, any errors
@@ -334,7 +334,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: cancelWorkflowRun
-      summary: Cancel a workflow run
+      summary: Xceptor Cancel a workflow run
       description: >-
         Cancels a pending or running workflow execution. The cancellation is
         asynchronous and the run status will transition to cancelled once
@@ -366,7 +366,7 @@ paths:
   /workflows/{workflowId}/steps:
     get:
       operationId: listWorkflowSteps
-      summary: List workflow steps
+      summary: Xceptor List workflow steps
       description: >-
         Retrieves the ordered list of processing steps that compose a
         workflow. Each step represents a distinct processing operation such
@@ -402,7 +402,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: addWorkflowStep
-      summary: Add a workflow step
+      summary: Xceptor Add a workflow step
       description: >-
         Adds a new processing step to a workflow. The step is inserted at the
         specified position in the workflow sequence. Steps can be configured

@@ -41,7 +41,7 @@ paths:
   /documents:
     get:
       operationId: listDocuments
-      summary: List documents
+      summary: Xceptor List documents
       description: >-
         Retrieves a paginated list of documents that have been uploaded to
         the Xceptor platform. Documents can be filtered by status,
@@ -97,7 +97,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: uploadDocument
-      summary: Upload a document
+      summary: Xceptor Upload a document
       description: >-
         Uploads a document to the Xceptor platform for processing. The
         document is accepted in its original format and queued for
@@ -165,7 +165,7 @@ paths:
   /documents/batch:
     post:
       operationId: uploadDocumentBatch
-      summary: Upload a batch of documents
+      summary: Xceptor Upload a batch of documents
       description: >-
         Uploads multiple documents in a single request for batch processing.
         All documents in the batch are processed using the same extraction
@@ -219,7 +219,7 @@ paths:
   /documents/{documentId}:
     get:
       operationId: getDocument
-      summary: Get document details
+      summary: Xceptor Get document details
       description: >-
         Retrieves the details and processing status of a specific document,
         including its classification, extraction status, and links to
@@ -249,7 +249,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteDocument
-      summary: Delete a document
+      summary: Xceptor Delete a document
       description: >-
         Deletes a document and its associated extracted data from the Xceptor
         platform. Documents that are currently being processed cannot be
@@ -276,7 +276,7 @@ paths:
   /documents/{documentId}/extraction:
     get:
       operationId: getDocumentExtraction
-      summary: Get extraction results
+      summary: Xceptor Get extraction results
       description: >-
         Retrieves the data extraction results for a processed document. The
         results include all extracted fields and tables with their values,
@@ -308,7 +308,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: triggerExtraction
-      summary: Trigger document extraction
+      summary: Xceptor Trigger document extraction
       description: >-
         Manually triggers the data extraction process for a document that has
         been uploaded but not yet processed, or re-triggers extraction with
@@ -358,7 +358,7 @@ paths:
   /documents/{documentId}/download:
     get:
       operationId: downloadDocument
-      summary: Download original document
+      summary: Xceptor Download original document
       description: >-
         Downloads the original uploaded document file. Returns the file in
         its original format with appropriate content type headers.
@@ -389,7 +389,7 @@ paths:
   /templates:
     get:
       operationId: listTemplates
-      summary: List extraction templates
+      summary: Xceptor List extraction templates
       description: >-
         Retrieves a list of available extraction templates. Templates define
         the fields and tables to extract from specific document types,
@@ -420,7 +420,7 @@ paths:
   /templates/{templateId}:
     get:
       operationId: getTemplate
-      summary: Get template details
+      summary: Xceptor Get template details
       description: >-
         Retrieves the full definition of an extraction template, including
         its field definitions, table definitions, validation rules, and
