@@ -43,7 +43,7 @@ paths:
   /auth/token:
     post:
       operationId: createAccessToken
-      summary: Xceptor Create access token
+      summary: Xceptor Create Access Token
       description: >-
         Authenticates with the Xceptor platform using OAuth2 client credentials
         and returns an access token for subsequent API calls. The token should
@@ -89,7 +89,7 @@ paths:
   /auth/token/revoke:
     post:
       operationId: revokeAccessToken
-      summary: Xceptor Revoke access token
+      summary: Xceptor Revoke Access Token
       description: >-
         Revokes an active access token, preventing it from being used for
         further API calls. This should be called when the token is no longer
@@ -120,7 +120,7 @@ paths:
   /jobs:
     get:
       operationId: listJobs
-      summary: Xceptor List processing jobs
+      summary: Xceptor List Processing Jobs
       description: >-
         Retrieves a paginated list of data processing jobs. Jobs represent
         units of work executed on the Xceptor platform, such as document
@@ -180,7 +180,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createJob
-      summary: Xceptor Create a processing job
+      summary: Xceptor Create Processing Job
       description: >-
         Creates a new data processing job on the Xceptor platform. The job
         type determines the processing pipeline that will be executed.
@@ -216,7 +216,7 @@ paths:
   /jobs/{jobId}:
     get:
       operationId: getJob
-      summary: Xceptor Get job details
+      summary: Xceptor Get Job Details
       description: >-
         Retrieves the details and current status of a specific processing
         job, including progress information, any errors encountered, and
@@ -246,7 +246,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: cancelJob
-      summary: Xceptor Cancel a processing job
+      summary: Xceptor Cancel Processing Job
       description: >-
         Cancels a pending or running processing job. Completed or already
         cancelled jobs cannot be cancelled. Cancellation is asynchronous
@@ -278,7 +278,7 @@ paths:
   /datasources:
     get:
       operationId: listDataSources
-      summary: Xceptor List data sources
+      summary: Xceptor List Data Sources
       description: >-
         Retrieves a list of configured data sources available in the Xceptor
         platform. Data sources represent connections to external systems from
@@ -317,7 +317,7 @@ paths:
   /datasources/{datasourceId}:
     get:
       operationId: getDataSource
-      summary: Xceptor Get data source details
+      summary: Xceptor Get Data Source Details
       description: >-
         Retrieves the configuration details of a specific data source,
         including its connection parameters, status, and usage statistics.
@@ -347,7 +347,7 @@ paths:
   /health:
     get:
       operationId: getHealth
-      summary: Xceptor Check API health
+      summary: Xceptor Check API Health
       description: >-
         Returns the current health status of the Xceptor API services,
         including the status of dependent services and components.

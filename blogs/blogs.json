@@ -1,0 +1,13 @@
+{
+  "repo": "xceptor",
+  "feeds": [
+    {
+      "source": "https://www.xceptor.com/blogs",
+      "feed_url": "https://www.xceptor.com/blogs/rss.xml",
+      "saved": 10,
+      "title": "Blogs"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:38:31Z"
+}
