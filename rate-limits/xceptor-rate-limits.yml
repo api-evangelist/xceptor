@@ -4,111 +4,38 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Xceptor
 providerId: xceptor
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - API Integration
-  - Data Automation
-  - Data Extraction
-  - Document Processing
-  - ETL
-  - Financial Data
-  - Financial Services
-  - Intelligent Document Processing
-  - Reconciliations
-  - Trade Operations
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Xceptor API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  - Data Automation
+  - Document Processing
+description: Xceptor does not publish rate-limit documentation on its public web site or any
+  unauthenticated developer portal. The REST API is exposed within a customer's deployed Xceptor
+  environment; throttling is governed by the customer's deployment topology and the contractual
+  capacity Xceptor provisions for that tenant rather than a vendor-published numeric ceiling.
+sources:
+  - https://www.xceptor.com/
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Xceptor REST API
-      - Xceptor Workflow API
-      - Xceptor Document Upload API
-      - Xceptor Data Export API
-      - Xceptor Connector API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Xceptor REST API
-      - Xceptor Workflow API
-      - Xceptor Document Upload API
-      - Xceptor Data Export API
-      - Xceptor Connector API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Xceptor REST API
-      - Xceptor Workflow API
-      - Xceptor Document Upload API
-      - Xceptor Data Export API
-      - Xceptor Connector API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Xceptor REST API
-      - Xceptor Workflow API
-      - Xceptor Document Upload API
-      - Xceptor Data Export API
-      - Xceptor Connector API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Xceptor REST API
-      - Xceptor Workflow API
-      - Xceptor Document Upload API
-      - Xceptor Data Export API
-      - Xceptor Connector API
+  - name: Tenant / deployment-scoped throttling (not publicly documented)
+    scope: tenant
+    metric: varies
+    limit: see customer deployment documentation
+    notes: Xceptor's REST API runs inside a managed or customer-hosted Xceptor environment;
+      effective limits are determined by the deployment's compute and capacity allocation, not
+      by a vendor-published rate.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Documentation gating
+    description: Xceptor publishes no public rate-limit policy. Operational limits are shared
+      with customers as part of the implementation engagement.
+  - name: Document-processing batch model
+    description: Xceptor workloads are document-ingestion and reconciliation pipelines rather
+      than per-second transactional reads; throughput is governed by ingest worker count and
+      pipeline concurrency tuned per deployment.
+  - name: Backoff
+    description: Standard guidance is exponential backoff with jitter on HTTP 429 / 503
+      responses, with retry budgets coordinated with the customer's Xceptor solution architect.
 maintainers:
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
+    url: https://apievangelist.com
