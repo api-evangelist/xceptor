@@ -182,6 +182,36 @@ common:
     url: https://app.xceptor.cloud/xsllibrary/mx/home/
   - type: Azure Marketplace
     url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/xceptor.xceptor
+  - type: Integrations
+    url: https://www.xceptor.com/partners
+integrations:
+  - name: login-image
+  - name: xceptor-logo
+  - name: down-arrow
+  - name: Vector 21
+  - name: Image1
+  - name: Xceptor collaboration with Danske Bank
+  - name: Become a partner
+  - name: Crisil Coalition Greenwich Research
+  - name: Right
+  - name: checked
+  - name: Relationship
+  - name: BR_Logo
+  - name: KPM_Logo
+  - name: MSFT_Logo
+  - name: On_Corps_AI_Logo
+  - name: Droit_Logo
+  - name: GRCS_logo
+  - name: Delta_Capita_Logo
+  - name: DXC-64efe069
+  - name: Taskize_logo_2
+  - name: Eclerx_logo
+  - name: SC_SmartCOMM_Primary_Blue_Cyan (1)
+  - name: Torstone_logo
+  - name: Wipro_Logo
+  - name: logo-white
+  - name: Linkedin
+  - name: Follow Xceptor on Instagram
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
