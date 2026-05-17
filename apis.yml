@@ -130,17 +130,17 @@ apis:
 common:
   - type: Portal
     url: https://portal.xceptor.com
-  - type: Getting Started
+  - type: GettingStarted
     url: https://docs.xceptor.com/getting-started
   - type: Authentication
     url: https://docs.xceptor.com/authentication
-  - type: Rate Limits
+  - type: RateLimits
     url: https://docs.xceptor.com/rate-limits
-  - type: Status Page
+  - type: StatusPage
     url: https://status.xceptor.com
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.xceptor.com/legal-tcs
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.xceptor.com/privacy-policy
   - type: Contact
     url: https://www.xceptor.com/contact-us
