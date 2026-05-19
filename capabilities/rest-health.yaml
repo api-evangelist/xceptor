@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xceptor REST API — Health
+  description: 'Xceptor REST API — Health. 1 operations. Lead operation: Xceptor Check API Health. Self-contained Naftiko
+    capability covering one Xceptor business surface.'
+  tags:
+  - Xceptor
+  - Health
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XCEPTOR_API_KEY: XCEPTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-health
+    baseUri: https://api.xceptor.com/v1
+    description: Xceptor REST API — Health business capability. Self-contained, no shared references.
+    resources:
+    - name: health
+      path: /health
+      operations:
+      - name: gethealth
+        method: GET
+        description: Xceptor Check API Health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.XCEPTOR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-health-rest
+    port: 8080
+    description: REST adapter for Xceptor REST API — Health. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/health
+      name: health
+      description: REST surface for health.
+      operations:
+      - method: GET
+        name: gethealth
+        description: Xceptor Check API Health
+        call: rest-health.gethealth
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-health-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xceptor REST API — Health. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: xceptor-check-api-health
+      description: Xceptor Check API Health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-health.gethealth
+      outputParameters:
+      - type: object
+        mapping: $.

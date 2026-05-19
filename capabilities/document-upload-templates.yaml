@@ -1,0 +1,111 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xceptor Document Upload API — Templates
+  description: 'Xceptor Document Upload API — Templates. 2 operations. Lead operation: Xceptor List extraction templates.
+    Self-contained Naftiko capability covering one Xceptor business surface.'
+  tags:
+  - Xceptor
+  - Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XCEPTOR_API_KEY: XCEPTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: document-upload-templates
+    baseUri: https://api.xceptor.com/v1
+    description: Xceptor Document Upload API — Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: templates
+      path: /templates
+      operations:
+      - name: listtemplates
+        method: GET
+        description: Xceptor List extraction templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: document_type
+          in: query
+          type: string
+          description: Filter templates by document type
+    - name: templates-templateId
+      path: /templates/{templateId}
+      operations:
+      - name: gettemplate
+        method: GET
+        description: Xceptor Get template details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.XCEPTOR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: document-upload-templates-rest
+    port: 8080
+    description: REST adapter for Xceptor Document Upload API — Templates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/templates
+      name: templates
+      description: REST surface for templates.
+      operations:
+      - method: GET
+        name: listtemplates
+        description: Xceptor List extraction templates
+        call: document-upload-templates.listtemplates
+        with:
+          document_type: rest.document_type
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/templates/{templateid}
+      name: templates-templateid
+      description: REST surface for templates-templateId.
+      operations:
+      - method: GET
+        name: gettemplate
+        description: Xceptor Get template details
+        call: document-upload-templates.gettemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: document-upload-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xceptor Document Upload API — Templates. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: xceptor-list-extraction-templates
+      description: Xceptor List extraction templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: document-upload-templates.listtemplates
+      with:
+        document_type: tools.document_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: xceptor-get-template-details
+      description: Xceptor Get template details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: document-upload-templates.gettemplate
+      outputParameters:
+      - type: object
+        mapping: $.

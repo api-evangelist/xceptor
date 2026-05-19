@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xceptor Workflow API — Workflow Runs
+  description: 'Xceptor Workflow API — Workflow Runs. 4 operations. Lead operation: Xceptor List Workflow Runs. Self-contained
+    Naftiko capability covering one Xceptor business surface.'
+  tags:
+  - Xceptor
+  - Workflow Runs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XCEPTOR_API_KEY: XCEPTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: workflow-workflow-runs
+    baseUri: https://api.xceptor.com/v1
+    description: Xceptor Workflow API — Workflow Runs business capability. Self-contained, no shared references.
+    resources:
+    - name: workflows-workflowId-runs
+      path: /workflows/{workflowId}/runs
+      operations:
+      - name: listworkflowruns
+        method: GET
+        description: Xceptor List Workflow Runs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter runs by execution status
+      - name: executeworkflow
+        method: POST
+        description: Xceptor Execute Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: workflows-workflowId-runs-runId
+      path: /workflows/{workflowId}/runs/{runId}
+      operations:
+      - name: getworkflowrun
+        method: GET
+        description: Xceptor Get Workflow Run Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: cancelworkflowrun
+        method: DELETE
+        description: Xceptor Cancel Workflow Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.XCEPTOR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: workflow-workflow-runs-rest
+    port: 8080
+    description: REST adapter for Xceptor Workflow API — Workflow Runs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workflows/{workflowid}/runs
+      name: workflows-workflowid-runs
+      description: REST surface for workflows-workflowId-runs.
+      operations:
+      - method: GET
+        name: listworkflowruns
+        description: Xceptor List Workflow Runs
+        call: workflow-workflow-runs.listworkflowruns
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: executeworkflow
+        description: Xceptor Execute Workflow
+        call: workflow-workflow-runs.executeworkflow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflows/{workflowid}/runs/{runid}
+      name: workflows-workflowid-runs-runid
+      description: REST surface for workflows-workflowId-runs-runId.
+      operations:
+      - method: GET
+        name: getworkflowrun
+        description: Xceptor Get Workflow Run Details
+        call: workflow-workflow-runs.getworkflowrun
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelworkflowrun
+        description: Xceptor Cancel Workflow Run
+        call: workflow-workflow-runs.cancelworkflowrun
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: workflow-workflow-runs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xceptor Workflow API — Workflow Runs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: xceptor-list-workflow-runs
+      description: Xceptor List Workflow Runs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: workflow-workflow-runs.listworkflowruns
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: xceptor-execute-workflow
+      description: Xceptor Execute Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: workflow-workflow-runs.executeworkflow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: xceptor-get-workflow-run-details
+      description: Xceptor Get Workflow Run Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: workflow-workflow-runs.getworkflowrun
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: xceptor-cancel-workflow-run
+      description: Xceptor Cancel Workflow Run
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: workflow-workflow-runs.cancelworkflowrun
+      outputParameters:
+      - type: object
+        mapping: $.
