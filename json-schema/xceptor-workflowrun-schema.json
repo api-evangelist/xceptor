@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowRun",
+  "title": "WorkflowRun",
+  "type": "object",
+  "description": "A single execution instance of a workflow. Tracks the progress and outcome of running a workflow's processing pipeline.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the run"
+    },
+    "workflow_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The identifier of the workflow that was executed"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current execution status of the run",
+      "enum": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "triggered_by": {
+      "type": "string",
+      "description": "How this run was triggered",
+      "enum": [
+        "manual",
+        "schedule",
+        "event",
+        "api"
+      ]
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the run started executing"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the run completed"
+    },
+    "duration_ms": {
+      "type": "integer",
+      "description": "The total run duration in milliseconds",
+      "minimum": 0
+    },
+    "step_results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/StepResult"
+      },
+      "description": "The results of each step in the workflow run"
+    },
+    "input_parameters": {
+      "type": "object",
+      "description": "The input parameters provided for this run",
+      "additionalProperties": true
+    },
+    "error": {
+      "$ref": "#/components/schemas/Error"
+    }
+  }
+}

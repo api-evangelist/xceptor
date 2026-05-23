@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StepResult",
+  "title": "StepResult",
+  "type": "object",
+  "description": "The result of executing a single workflow step",
+  "properties": {
+    "step_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The identifier of the workflow step"
+    },
+    "step_name": {
+      "type": "string",
+      "description": "The name of the workflow step"
+    },
+    "status": {
+      "type": "string",
+      "description": "The execution status of the step",
+      "enum": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "skipped"
+      ]
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the step started"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the step completed"
+    },
+    "records_processed": {
+      "type": "integer",
+      "description": "The number of data records processed by the step",
+      "minimum": 0
+    },
+    "records_failed": {
+      "type": "integer",
+      "description": "The number of records that failed processing",
+      "minimum": 0
+    },
+    "error": {
+      "$ref": "#/components/schemas/Error"
+    }
+  }
+}

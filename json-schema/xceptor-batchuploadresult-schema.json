@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BatchUploadResult",
+  "title": "BatchUploadResult",
+  "type": "object",
+  "description": "The result of a batch document upload operation",
+  "properties": {
+    "batch_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the batch"
+    },
+    "total_files": {
+      "type": "integer",
+      "description": "The total number of files in the batch"
+    },
+    "accepted": {
+      "type": "integer",
+      "description": "The number of files accepted for processing"
+    },
+    "rejected": {
+      "type": "integer",
+      "description": "The number of files rejected due to errors"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Document"
+      },
+      "description": "The list of accepted documents"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BatchFileError"
+      },
+      "description": "Errors for rejected files"
+    }
+  }
+}

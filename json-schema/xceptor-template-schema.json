@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Template",
+  "title": "Template",
+  "type": "object",
+  "description": "An extraction template that defines the fields and tables to extract from a specific document type, along with validation rules and confidence thresholds.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the template"
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the template"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the document type this template handles"
+    },
+    "document_type": {
+      "type": "string",
+      "description": "The document type classification this template is designed for"
+    },
+    "field_definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/FieldDefinition"
+      },
+      "description": "The fields to extract from documents"
+    },
+    "table_definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TableDefinition"
+      },
+      "description": "The tables to extract from documents"
+    },
+    "confidence_threshold": {
+      "type": "number",
+      "description": "The minimum confidence score for accepting extracted values without manual review (0.0 to 1.0)",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "default": 0.85
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the template was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the template was last updated"
+    }
+  }
+}

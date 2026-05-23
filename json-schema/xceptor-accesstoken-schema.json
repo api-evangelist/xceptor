@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessToken",
+  "title": "AccessToken",
+  "type": "object",
+  "description": "An OAuth2 access token for authenticating API requests",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "The Bearer access token value"
+    },
+    "token_type": {
+      "type": "string",
+      "description": "The type of token issued",
+      "enum": [
+        "bearer"
+      ]
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "The lifetime of the access token in seconds"
+    },
+    "scope": {
+      "type": "string",
+      "description": "The scope of access granted by the token"
+    }
+  }
+}

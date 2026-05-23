@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FieldDefinition",
+  "title": "FieldDefinition",
+  "type": "object",
+  "description": "A field definition within an extraction template",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the field to extract"
+    },
+    "data_type": {
+      "type": "string",
+      "description": "The expected data type of the field",
+      "enum": [
+        "string",
+        "number",
+        "date",
+        "currency",
+        "boolean"
+      ]
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether the field is required in the extraction output"
+    },
+    "validation_pattern": {
+      "type": "string",
+      "description": "A regular expression pattern for validating extracted values"
+    }
+  }
+}

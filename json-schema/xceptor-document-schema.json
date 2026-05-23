@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Document",
+  "title": "Document",
+  "type": "object",
+  "description": "A document that has been uploaded to the Xceptor platform for intelligent data extraction and processing.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the document"
+    },
+    "filename": {
+      "type": "string",
+      "description": "The original filename of the uploaded document"
+    },
+    "content_type": {
+      "type": "string",
+      "description": "The MIME type of the uploaded document"
+    },
+    "file_size": {
+      "type": "integer",
+      "description": "The file size in bytes",
+      "minimum": 0
+    },
+    "status": {
+      "type": "string",
+      "description": "The current processing status of the document",
+      "enum": [
+        "uploaded",
+        "classifying",
+        "classified",
+        "extracting",
+        "extracted",
+        "validated",
+        "failed"
+      ]
+    },
+    "classification": {
+      "type": "string",
+      "description": "The document type classification determined by AI or assigned by template"
+    },
+    "template_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The extraction template used for this document"
+    },
+    "confidence_score": {
+      "type": "number",
+      "description": "The overall confidence score for the classification (0.0 to 1.0)",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "page_count": {
+      "type": "integer",
+      "description": "The number of pages in the document",
+      "minimum": 1
+    },
+    "uploaded_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the document was uploaded"
+    },
+    "processed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time extraction was completed"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Custom metadata associated with the document",
+      "additionalProperties": true
+    }
+  }
+}

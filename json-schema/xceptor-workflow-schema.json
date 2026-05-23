@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Workflow",
+  "title": "Workflow",
+  "type": "object",
+  "description": "A workflow definition that describes a multi-step data processing pipeline in the Xceptor platform.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the workflow"
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the workflow"
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of what the workflow does"
+    },
+    "status": {
+      "type": "string",
+      "description": "The activation status of the workflow",
+      "enum": [
+        "active",
+        "inactive",
+        "draft"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "description": "The category or group the workflow belongs to"
+    },
+    "trigger_type": {
+      "type": "string",
+      "description": "How the workflow is triggered for execution",
+      "enum": [
+        "manual",
+        "scheduled",
+        "event",
+        "api"
+      ]
+    },
+    "schedule": {
+      "type": "string",
+      "description": "The cron expression for scheduled workflows, applicable when trigger_type is scheduled"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WorkflowStep"
+      },
+      "description": "The ordered list of processing steps in the workflow"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the workflow was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the workflow was last updated"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "The identifier of the user who created the workflow"
+    }
+  }
+}

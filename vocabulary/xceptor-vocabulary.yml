@@ -1,0 +1,12 @@
+name: Xceptor Domain Vocabulary
+provider: Xceptor
+providerId: xceptor
+description: Tag-derived vocabulary for the Xceptor API surface; sourced from openapi/ tags.
+terms:
+- term: Documents
+  description: Operations for uploading, listing, and managing documents in the Xceptor platform.
+- term: Extraction
+  description: Operations for triggering and monitoring document data extraction using Xceptor's AI-powered processing engine.
+- term: Templates
+  description: Operations for managing extraction templates that define the fields and tables to extract from specific document
+    types.

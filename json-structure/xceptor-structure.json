@@ -1,0 +1,186 @@
+{
+  "provider": "Xceptor",
+  "providerId": "xceptor",
+  "kind": "json-structure",
+  "description": "Structural overview of the Xceptor API surface; extracted from openapi/.",
+  "schemaCount": 14,
+  "operationCount": 10,
+  "schemas": [
+    {
+      "name": "Document",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "DocumentList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "BatchUploadResult",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "BatchFileError",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ExtractionResult",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ExtractedField",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ExtractedTable",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "BoundingBox",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Template",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "FieldDefinition",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "TableDefinition",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "TemplateList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Pagination",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/documents",
+      "operationId": "listDocuments",
+      "summary": "Xceptor List documents",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/documents",
+      "operationId": "uploadDocument",
+      "summary": "Xceptor Upload a document",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/documents/batch",
+      "operationId": "uploadDocumentBatch",
+      "summary": "Xceptor Upload a batch of documents",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/documents/{documentId}",
+      "operationId": "getDocument",
+      "summary": "Xceptor Get document details",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/documents/{documentId}",
+      "operationId": "deleteDocument",
+      "summary": "Xceptor Delete a document",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/documents/{documentId}/extraction",
+      "operationId": "getDocumentExtraction",
+      "summary": "Xceptor Get extraction results",
+      "tags": [
+        "Extraction"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/documents/{documentId}/extraction",
+      "operationId": "triggerExtraction",
+      "summary": "Xceptor Trigger document extraction",
+      "tags": [
+        "Extraction"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/documents/{documentId}/download",
+      "operationId": "downloadDocument",
+      "summary": "Xceptor Download original document",
+      "tags": [
+        "Documents"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/templates",
+      "operationId": "listTemplates",
+      "summary": "Xceptor List extraction templates",
+      "tags": [
+        "Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/templates/{templateId}",
+      "operationId": "getTemplate",
+      "summary": "Xceptor Get template details",
+      "tags": [
+        "Templates"
+      ]
+    }
+  ]
+}

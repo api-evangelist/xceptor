@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowStep",
+  "title": "WorkflowStep",
+  "type": "object",
+  "description": "A single processing step within a workflow. Steps are executed in sequence and each performs a specific data processing operation.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the step"
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the step"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of processing operation the step performs",
+      "enum": [
+        "extraction",
+        "transformation",
+        "validation",
+        "enrichment",
+        "routing",
+        "notification",
+        "export",
+        "custom"
+      ]
+    },
+    "position": {
+      "type": "integer",
+      "description": "The position of the step in the workflow sequence (0-based)",
+      "minimum": 0
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Type-specific configuration parameters for the step",
+      "additionalProperties": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the step is enabled for execution",
+      "default": true
+    }
+  }
+}

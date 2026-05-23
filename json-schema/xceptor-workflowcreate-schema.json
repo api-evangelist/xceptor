@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowCreate",
+  "title": "WorkflowCreate",
+  "type": "object",
+  "description": "Request body for creating a new workflow",
+  "required": [
+    "name",
+    "trigger_type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name of the workflow",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of what the workflow does",
+      "maxLength": 2000
+    },
+    "category": {
+      "type": "string",
+      "description": "The category or group for the workflow"
+    },
+    "trigger_type": {
+      "type": "string",
+      "description": "How the workflow is triggered for execution",
+      "enum": [
+        "manual",
+        "scheduled",
+        "event",
+        "api"
+      ]
+    },
+    "schedule": {
+      "type": "string",
+      "description": "Cron expression for scheduled workflows. Required when trigger_type is scheduled."
+    }
+  }
+}

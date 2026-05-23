@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Job",
+  "title": "Job",
+  "type": "object",
+  "description": "A data processing job that executes on the Xceptor platform. Jobs represent units of work such as document ingestion, data extraction, transformation, or export operations.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the job"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of processing job",
+      "enum": [
+        "ingestion",
+        "extraction",
+        "transformation",
+        "export",
+        "workflow"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "The current processing status of the job",
+      "enum": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "progress": {
+      "type": "integer",
+      "description": "The processing progress as a percentage (0-100)",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the job was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the job was last updated"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the job completed processing"
+    },
+    "error": {
+      "$ref": "#/components/schemas/Error"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata associated with the job",
+      "additionalProperties": true
+    }
+  }
+}

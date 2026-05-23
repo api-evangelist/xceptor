@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowRunCreate",
+  "title": "WorkflowRunCreate",
+  "type": "object",
+  "description": "Request body for triggering a workflow execution",
+  "properties": {
+    "parameters": {
+      "type": "object",
+      "description": "Input parameters for the workflow execution",
+      "additionalProperties": true
+    }
+  }
+}

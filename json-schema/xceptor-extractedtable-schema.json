@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractedTable",
+  "title": "ExtractedTable",
+  "type": "object",
+  "description": "A table extracted from a document with its rows and column headers",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name or label of the extracted table"
+    },
+    "headers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The column headers of the extracted table"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "description": "A cell value in the table row"
+        }
+      },
+      "description": "The data rows of the extracted table"
+    },
+    "confidence": {
+      "type": "number",
+      "description": "The confidence score for the table extraction (0.0 to 1.0)",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "page_number": {
+      "type": "integer",
+      "description": "The page number where the table was found",
+      "minimum": 1
+    }
+  }
+}

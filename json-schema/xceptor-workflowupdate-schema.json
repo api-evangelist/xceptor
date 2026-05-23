@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowUpdate",
+  "title": "WorkflowUpdate",
+  "type": "object",
+  "description": "Request body for updating an existing workflow",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name of the workflow",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of what the workflow does",
+      "maxLength": 2000
+    },
+    "status": {
+      "type": "string",
+      "description": "The activation status of the workflow",
+      "enum": [
+        "active",
+        "inactive",
+        "draft"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "description": "The category or group for the workflow"
+    },
+    "trigger_type": {
+      "type": "string",
+      "description": "How the workflow is triggered for execution",
+      "enum": [
+        "manual",
+        "scheduled",
+        "event",
+        "api"
+      ]
+    },
+    "schedule": {
+      "type": "string",
+      "description": "Cron expression for scheduled workflows. Required when trigger_type is scheduled."
+    }
+  }
+}

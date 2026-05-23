@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowRunList",
+  "title": "WorkflowRunList",
+  "type": "object",
+  "description": "A paginated list of workflow runs",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WorkflowRun"
+      },
+      "description": "The list of workflow runs for the current page"
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

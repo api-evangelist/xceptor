@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BoundingBox",
+  "title": "BoundingBox",
+  "type": "object",
+  "description": "The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).",
+  "properties": {
+    "x": {
+      "type": "number",
+      "description": "The x-coordinate of the top-left corner",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "y": {
+      "type": "number",
+      "description": "The y-coordinate of the top-left corner",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "width": {
+      "type": "number",
+      "description": "The width of the bounding box",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "height": {
+      "type": "number",
+      "description": "The height of the bounding box",
+      "minimum": 0.0,
+      "maximum": 1.0
+    }
+  }
+}

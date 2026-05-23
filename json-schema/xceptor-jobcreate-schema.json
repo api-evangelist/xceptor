@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobCreate",
+  "title": "JobCreate",
+  "type": "object",
+  "description": "Request body for creating a new processing job",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of processing job to create",
+      "enum": [
+        "ingestion",
+        "extraction",
+        "transformation",
+        "export",
+        "workflow"
+      ]
+    },
+    "workflow_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The identifier of the workflow to execute, required when type is workflow"
+    },
+    "datasource_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The identifier of the data source to process from"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Job-specific configuration parameters",
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata to associate with the job",
+      "additionalProperties": true
+    }
+  }
+}

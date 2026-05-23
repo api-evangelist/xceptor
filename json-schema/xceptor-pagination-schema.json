@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Pagination",
+  "title": "Pagination",
+  "type": "object",
+  "description": "Pagination information for list responses",
+  "properties": {
+    "page": {
+      "type": "integer",
+      "description": "The current page number"
+    },
+    "page_size": {
+      "type": "integer",
+      "description": "The number of items per page"
+    },
+    "total_items": {
+      "type": "integer",
+      "description": "The total number of items across all pages"
+    },
+    "total_pages": {
+      "type": "integer",
+      "description": "The total number of pages"
+    }
+  }
+}

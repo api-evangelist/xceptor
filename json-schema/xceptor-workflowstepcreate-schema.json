@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowStepCreate",
+  "title": "WorkflowStepCreate",
+  "type": "object",
+  "description": "Request body for adding a new step to a workflow",
+  "required": [
+    "name",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name of the step",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of processing operation",
+      "enum": [
+        "extraction",
+        "transformation",
+        "validation",
+        "enrichment",
+        "routing",
+        "notification",
+        "export",
+        "custom"
+      ]
+    },
+    "position": {
+      "type": "integer",
+      "description": "The desired position in the workflow sequence. If omitted, the step is appended to the end.",
+      "minimum": 0
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Type-specific configuration parameters for the step",
+      "additionalProperties": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the step is enabled for execution",
+      "default": true
+    }
+  }
+}
