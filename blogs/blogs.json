@@ -2,13 +2,20 @@
   "repo": "xceptor",
   "feeds": [
     {
-      "source": "https://www.xceptor.com/blogs",
+      "source": "https://www.xceptor.com/blogs/atom.xml",
       "feed_url": "https://www.xceptor.com/blogs/atom.xml",
-      "title": "Blogs",
+      "title": "",
       "saved": 0,
-      "last_error": "http_404"
+      "method": "feed"
+    },
+    {
+      "source": "https://www.xceptor.com/solutions",
+      "feed_url": "https://www.xceptor.com/solutions",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 17,
+  "fetched": "2026-06-01T23:35:02Z"
 }
