@@ -1,0 +1,305 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor Document Upload API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/documents",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter documents by processing status"
+              },
+              {
+                "name": "classification",
+                "value": "",
+                "type": "query",
+                "description": "Filter documents by their classified document type"
+              },
+              {
+                "name": "uploaded_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter documents uploaded after this date-time"
+              },
+              {
+                "name": "uploaded_before",
+                "value": "",
+                "type": "query",
+                "description": "Filter documents uploaded before this date-time"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of documents that have been uploaded to the Xceptor platform. Documents can be filtered by status, classification, and upload date. Each document includes metadata about its processing state and extracted data availability."
+        },
+        {
+          "info": {
+            "name": "Xceptor Upload a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/documents",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "template_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "workflow_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "metadata",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a document to the Xceptor platform for processing. The document is accepted in its original format and queued for classification and extraction. Supported formats include PDF, Microsoft Excel, CSV, XML, JSON, email (EML/MSG), and image files (PNG, JPG, TIFF). Documents can optionally be assigned to a specific extraction template."
+        },
+        {
+          "info": {
+            "name": "Xceptor Upload a batch of documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/documents/batch",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "template_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "workflow_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads multiple documents in a single request for batch processing. All documents in the batch are processed using the same extraction template and workflow configuration. This is efficient for processing large volumes of similar documents such as trade confirmations or tax forms."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get document details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ]
+          },
+          "docs": "Retrieves the details and processing status of a specific document, including its classification, extraction status, and links to extracted data when available."
+        },
+        {
+          "info": {
+            "name": "Xceptor Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.xceptor.com/v1/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ]
+          },
+          "docs": "Deletes a document and its associated extracted data from the Xceptor platform. Documents that are currently being processed cannot be deleted until processing completes or is cancelled."
+        },
+        {
+          "info": {
+            "name": "Xceptor Download original document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/documents/:documentId/download",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ]
+          },
+          "docs": "Downloads the original uploaded document file. Returns the file in its original format with appropriate content type headers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Extraction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor Get extraction results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/documents/:documentId/extraction",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ]
+          },
+          "docs": "Retrieves the data extraction results for a processed document. The results include all extracted fields and tables with their values, locations in the source document, and AI confidence scores. Fields with confidence scores below the configured threshold are flagged for manual review."
+        },
+        {
+          "info": {
+            "name": "Xceptor Trigger document extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/documents/:documentId/extraction",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually triggers the data extraction process for a document that has been uploaded but not yet processed, or re-triggers extraction with a different template. The extraction runs asynchronously and results can be retrieved once the document status transitions to extracted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List extraction templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/templates",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "document_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter templates by document type"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of available extraction templates. Templates define the fields and tables to extract from specific document types, along with validation rules and confidence thresholds."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get template details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the extraction template"
+              }
+            ]
+          },
+          "docs": "Retrieves the full definition of an extraction template, including its field definitions, table definitions, validation rules, and confidence thresholds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

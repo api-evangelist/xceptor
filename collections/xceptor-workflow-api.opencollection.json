@@ -1,0 +1,311 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor Workflow API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter workflows by their activation status"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter workflows by category"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search workflows by name or description"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of workflow definitions configured in the Xceptor platform. Workflows can be filtered by status, category, and name. Each workflow defines a multi-step data processing pipeline."
+        },
+        {
+          "info": {
+            "name": "Xceptor Create Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/workflows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new workflow definition in the Xceptor platform. A workflow defines a sequence of processing steps that are executed in order to transform, validate, enrich, and route data through the automation pipeline."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get Workflow Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ]
+          },
+          "docs": "Retrieves the full definition of a specific workflow, including its steps, trigger configuration, and associated metadata."
+        },
+        {
+          "info": {
+            "name": "Xceptor Update Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing workflow definition. Changes to active workflows take effect on subsequent runs. Running instances continue to use the previous version until completion."
+        },
+        {
+          "info": {
+            "name": "Xceptor Delete Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ]
+          },
+          "docs": "Deletes a workflow definition. Active workflows must be deactivated before deletion. Any running instances will complete before the workflow is removed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter runs by execution status"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of execution runs for a specific workflow. Each run represents a single execution of the workflow and includes status, timing, and output information."
+        },
+        {
+          "info": {
+            "name": "Xceptor Execute Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers an execution run of the specified workflow. The workflow is executed asynchronously and the run status can be monitored using the run details endpoint. Input parameters can be provided to configure the execution context."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get Workflow Run Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs/:runId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow run"
+              }
+            ]
+          },
+          "docs": "Retrieves the details and current status of a specific workflow run, including step-level progress, timing information, any errors encountered, and output references."
+        },
+        {
+          "info": {
+            "name": "Xceptor Cancel Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs/:runId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow run"
+              }
+            ]
+          },
+          "docs": "Cancels a pending or running workflow execution. The cancellation is asynchronous and the run status will transition to cancelled once all active steps have stopped processing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow Steps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List Workflow Steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/steps",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ]
+          },
+          "docs": "Retrieves the ordered list of processing steps that compose a workflow. Each step represents a distinct processing operation such as extraction, transformation, validation, enrichment, or routing."
+        },
+        {
+          "info": {
+            "name": "Xceptor Add Workflow Step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/steps",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new processing step to a workflow. The step is inserted at the specified position in the workflow sequence. Steps can be configured with type-specific parameters for extraction, transformation, validation, and other operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

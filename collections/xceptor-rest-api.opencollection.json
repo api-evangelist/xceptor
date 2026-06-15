@@ -1,0 +1,241 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor REST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor Create Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/auth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates with the Xceptor platform using OAuth2 client credentials and returns an access token for subsequent API calls. The token should be included in the Authorization header as a Bearer token."
+        },
+        {
+          "info": {
+            "name": "Xceptor Revoke Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/auth/token/revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revokes an active access token, preventing it from being used for further API calls. This should be called when the token is no longer needed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List Processing Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/jobs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs by processing status"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs by processing type"
+              },
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs created after this date-time"
+              },
+              {
+                "name": "created_before",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs created before this date-time"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of data processing jobs. Jobs represent units of work executed on the Xceptor platform, such as document ingestion, data extraction, transformation, or export operations. Results can be filtered by status, type, and date range."
+        },
+        {
+          "info": {
+            "name": "Xceptor Create Processing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new data processing job on the Xceptor platform. The job type determines the processing pipeline that will be executed. Jobs are processed asynchronously and their status can be monitored using the job status endpoint."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get Job Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the processing job"
+              }
+            ]
+          },
+          "docs": "Retrieves the details and current status of a specific processing job, including progress information, any errors encountered, and links to output data when the job has completed."
+        },
+        {
+          "info": {
+            "name": "Xceptor Cancel Processing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.xceptor.com/v1/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the processing job"
+              }
+            ]
+          },
+          "docs": "Cancels a pending or running processing job. Completed or already cancelled jobs cannot be cancelled. Cancellation is asynchronous and the job status will transition to cancelled once processing has stopped."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List Data Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/datasources",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by data source type"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of configured data sources available in the Xceptor platform. Data sources represent connections to external systems from which data is ingested or to which data is exported, including databases, cloud storage, messaging systems, and file systems."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get Data Source Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/datasources/:datasourceId",
+            "params": [
+              {
+                "name": "datasourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data source"
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration details of a specific data source, including its connection parameters, status, and usage statistics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor Check API Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/health"
+          },
+          "docs": "Returns the current health status of the Xceptor API services, including the status of dependent services and components."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
