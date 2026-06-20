@@ -3,7 +3,7 @@ name: Xceptor
 description: >-
   Xceptor is a data automation platform that helps organizations extract, transform, and integrate data from various
   sources, particularly focused on document processing and financial data automation.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/xceptor/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-05-19'
