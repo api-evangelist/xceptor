@@ -58,7 +58,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.xceptor.com/api/workflows
-      - type: Postman Collection
+      - type: PostmanCollection
         url: https://www.postman.com/xceptor/workspace/workflows
     tags:
       - Automation
