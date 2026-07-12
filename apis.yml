@@ -120,6 +120,10 @@ apis:
       - Integration
       - SWIFT
 common:
+  - type: DomainSecurity
+    url: security/xceptor-domain-security.yml
+  - type: Authentication
+    url: authentication/xceptor-authentication.yml
   - type: Portal
     url: https://portal.xceptor.com
   - type: GettingStarted
