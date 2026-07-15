@@ -120,6 +120,8 @@ apis:
       - Integration
       - SWIFT
 common:
+  - type: AgenticAccess
+    url: agentic-access/xceptor-agentic-access.yml
   - type: DomainSecurity
     url: security/xceptor-domain-security.yml
   - type: Authentication
