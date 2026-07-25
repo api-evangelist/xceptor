@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Xceptor Document Upload Authentication API
+  description: API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.
+  version: '1.0'
+  contact:
+    name: Xceptor API Support
+    url: https://www.xceptor.com/support
+    email: api-support@xceptor.com
+  termsOfService: https://www.xceptor.com/legal-tcs
+servers:
+- url: https://api.xceptor.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: Operations for authenticating with the Xceptor platform and managing access tokens.
+paths:
+  /auth/token:
+    post:
+      operationId: createAccessToken
+      summary: Xceptor Create Access Token
+      description: Authenticates with the Xceptor platform using OAuth2 client credentials and returns an access token for subsequent API calls. The token should be included in the Authorization header as a Bearer token.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - client_id
+              - client_secret
+              - grant_type
+              properties:
+                client_id:
+                  type: string
+                  description: The OAuth2 client identifier issued to the application
+                client_secret:
+                  type: string
+                  description: The OAuth2 client secret issued to the application
+                grant_type:
+                  type: string
+                  description: The OAuth2 grant type
+                  enum:
+                  - client_credentials
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/token/revoke:
+    post:
+      operationId: revokeAccessToken
+      summary: Xceptor Revoke Access Token
+      description: Revokes an active access token, preventing it from being used for further API calls. This should be called when the token is no longer needed.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - token
+              properties:
+                token:
+                  type: string
+                  description: The access token to revoke
+      responses:
+        '200':
+          description: Token successfully revoked
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
+    AccessToken:
+      type: object
+      description: An OAuth2 access token for authenticating API requests
+      properties:
+        access_token:
+          type: string
+          description: The Bearer access token value
+        token_type:
+          type: string
+          description: The type of token issued
+          enum:
+          - bearer
+        expires_in:
+          type: integer
+          description: The lifetime of the access token in seconds
+        scope:
+          type: string
+          description: The scope of access granted by the token
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 access token obtained via the client credentials flow. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: Xceptor Document Upload API Documentation
+  url: https://docs.xceptor.com/api/documents

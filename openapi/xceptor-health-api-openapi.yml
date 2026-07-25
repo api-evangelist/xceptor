@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: Xceptor Document Upload Authentication Health API
+  description: API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.
+  version: '1.0'
+  contact:
+    name: Xceptor API Support
+    url: https://www.xceptor.com/support
+    email: api-support@xceptor.com
+  termsOfService: https://www.xceptor.com/legal-tcs
+servers:
+- url: https://api.xceptor.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Health
+  description: Operations for checking the health and status of the Xceptor API services.
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Xceptor Check API Health
+      description: Returns the current health status of the Xceptor API services, including the status of dependent services and components.
+      tags:
+      - Health
+      security: []
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '503':
+          description: API is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      description: The health status of the Xceptor API services
+      properties:
+        status:
+          type: string
+          description: The overall health status of the API
+          enum:
+          - healthy
+          - degraded
+          - unhealthy
+        version:
+          type: string
+          description: The API version
+        timestamp:
+          type: string
+          format: date-time
+          description: The time the health check was performed
+        services:
+          type: object
+          description: Status of individual dependent services
+          additionalProperties:
+            type: string
+            enum:
+            - healthy
+            - unhealthy
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 access token obtained via the client credentials flow. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: Xceptor Document Upload API Documentation
+  url: https://docs.xceptor.com/api/documents

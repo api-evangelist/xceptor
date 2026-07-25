@@ -1,0 +1,311 @@
+openapi: 3.1.0
+info:
+  title: Xceptor Document Upload Authentication Extraction API
+  description: API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.
+  version: '1.0'
+  contact:
+    name: Xceptor API Support
+    url: https://www.xceptor.com/support
+    email: api-support@xceptor.com
+  termsOfService: https://www.xceptor.com/legal-tcs
+servers:
+- url: https://api.xceptor.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Extraction
+  description: Operations for triggering and monitoring document data extraction using Xceptor's AI-powered processing engine.
+paths:
+  /documents/{documentId}/extraction:
+    get:
+      operationId: getDocumentExtraction
+      summary: Xceptor Get extraction results
+      description: Retrieves the data extraction results for a processed document. The results include all extracted fields and tables with their values, locations in the source document, and AI confidence scores. Fields with confidence scores below the configured threshold are flagged for manual review.
+      tags:
+      - Extraction
+      parameters:
+      - $ref: '#/components/parameters/DocumentIdParam'
+      responses:
+        '200':
+          description: Extraction results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionResult'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Document not found or extraction not yet available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: triggerExtraction
+      summary: Xceptor Trigger document extraction
+      description: Manually triggers the data extraction process for a document that has been uploaded but not yet processed, or re-triggers extraction with a different template. The extraction runs asynchronously and results can be retrieved once the document status transitions to extracted.
+      tags:
+      - Extraction
+      parameters:
+      - $ref: '#/components/parameters/DocumentIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template_id:
+                  type: string
+                  format: uuid
+                  description: The extraction template to use. Overrides the previously assigned template if one exists.
+      responses:
+        '202':
+          description: Extraction triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Document is not in a valid state for extraction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ExtractedTable:
+      type: object
+      description: A table extracted from a document with its rows and column headers
+      properties:
+        name:
+          type: string
+          description: The name or label of the extracted table
+        headers:
+          type: array
+          items:
+            type: string
+          description: The column headers of the extracted table
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              description: A cell value in the table row
+          description: The data rows of the extracted table
+        confidence:
+          type: number
+          description: The confidence score for the table extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        page_number:
+          type: integer
+          description: The page number where the table was found
+          minimum: 1
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
+    BoundingBox:
+      type: object
+      description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
+      properties:
+        x:
+          type: number
+          description: The x-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        y:
+          type: number
+          description: The y-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        width:
+          type: number
+          description: The width of the bounding box
+          minimum: 0.0
+          maximum: 1.0
+        height:
+          type: number
+          description: The height of the bounding box
+          minimum: 0.0
+          maximum: 1.0
+    ExtractedField:
+      type: object
+      description: A single field extracted from a document with its value and metadata
+      properties:
+        name:
+          type: string
+          description: The name of the extracted field
+        value:
+          description: The extracted value of the field
+        data_type:
+          type: string
+          description: The data type of the extracted value
+          enum:
+          - string
+          - number
+          - date
+          - currency
+          - boolean
+        confidence:
+          type: number
+          description: The confidence score for this extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        page_number:
+          type: integer
+          description: The page number where the field was found
+          minimum: 1
+        bounding_box:
+          $ref: '#/components/schemas/BoundingBox'
+        requires_review:
+          type: boolean
+          description: Whether this field requires manual review due to low confidence
+    Document:
+      type: object
+      description: A document that has been uploaded to the Xceptor platform for intelligent data extraction and processing.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the document
+        filename:
+          type: string
+          description: The original filename of the uploaded document
+        content_type:
+          type: string
+          description: The MIME type of the uploaded document
+        file_size:
+          type: integer
+          description: The file size in bytes
+          minimum: 0
+        status:
+          type: string
+          description: The current processing status of the document
+          enum:
+          - uploaded
+          - classifying
+          - classified
+          - extracting
+          - extracted
+          - validated
+          - failed
+        classification:
+          type: string
+          description: The document type classification determined by AI or assigned by template
+        template_id:
+          type: string
+          format: uuid
+          description: The extraction template used for this document
+        confidence_score:
+          type: number
+          description: The overall confidence score for the classification (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        page_count:
+          type: integer
+          description: The number of pages in the document
+          minimum: 1
+        uploaded_at:
+          type: string
+          format: date-time
+          description: The date and time the document was uploaded
+        processed_at:
+          type: string
+          format: date-time
+          description: The date and time extraction was completed
+        metadata:
+          type: object
+          description: Custom metadata associated with the document
+          additionalProperties: true
+    ExtractionResult:
+      type: object
+      description: The data extraction results for a processed document, including all extracted fields, tables, and their confidence scores.
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          description: The identifier of the source document
+        template_id:
+          type: string
+          format: uuid
+          description: The extraction template that was applied
+        classification:
+          type: string
+          description: The classified document type
+        extraction_method:
+          type: string
+          description: The AI method used for extraction
+          enum:
+          - ocr
+          - nlp
+          - generative_ai
+          - template_based
+          - hybrid
+        overall_confidence:
+          type: number
+          description: The overall confidence score for the extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractedField'
+          description: The list of extracted fields with values and confidence scores
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractedTable'
+          description: The list of extracted tables
+        requires_review:
+          type: boolean
+          description: Whether any extracted values fall below the confidence threshold and require manual review
+        extracted_at:
+          type: string
+          format: date-time
+          description: The date and time the extraction was performed
+  parameters:
+    DocumentIdParam:
+      name: documentId
+      in: path
+      required: true
+      description: The unique identifier of the document
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 access token obtained via the client credentials flow. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: Xceptor Document Upload API Documentation
+  url: https://docs.xceptor.com/api/documents

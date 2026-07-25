@@ -1,0 +1,197 @@
+openapi: 3.1.0
+info:
+  title: Xceptor Document Upload Authentication Workflow Steps API
+  description: API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.
+  version: '1.0'
+  contact:
+    name: Xceptor API Support
+    url: https://www.xceptor.com/support
+    email: api-support@xceptor.com
+  termsOfService: https://www.xceptor.com/legal-tcs
+servers:
+- url: https://api.xceptor.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Workflow Steps
+  description: Operations for managing the individual processing steps that compose a workflow, including step ordering and configuration.
+paths:
+  /workflows/{workflowId}/steps:
+    get:
+      operationId: listWorkflowSteps
+      summary: Xceptor List Workflow Steps
+      description: Retrieves the ordered list of processing steps that compose a workflow. Each step represents a distinct processing operation such as extraction, transformation, validation, enrichment, or routing.
+      tags:
+      - Workflow Steps
+      parameters:
+      - $ref: '#/components/parameters/WorkflowIdParam'
+      responses:
+        '200':
+          description: A list of workflow steps
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WorkflowStep'
+                    description: The ordered list of workflow steps
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Workflow not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: addWorkflowStep
+      summary: Xceptor Add Workflow Step
+      description: Adds a new processing step to a workflow. The step is inserted at the specified position in the workflow sequence. Steps can be configured with type-specific parameters for extraction, transformation, validation, and other operations.
+      tags:
+      - Workflow Steps
+      parameters:
+      - $ref: '#/components/parameters/WorkflowIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkflowStepCreate'
+      responses:
+        '201':
+          description: Step added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowStep'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Workflow not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    WorkflowStepCreate:
+      type: object
+      description: Request body for adding a new step to a workflow
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: The display name of the step
+          minLength: 1
+          maxLength: 255
+        type:
+          type: string
+          description: The type of processing operation
+          enum:
+          - extraction
+          - transformation
+          - validation
+          - enrichment
+          - routing
+          - notification
+          - export
+          - custom
+        position:
+          type: integer
+          description: The desired position in the workflow sequence. If omitted, the step is appended to the end.
+          minimum: 0
+        configuration:
+          type: object
+          description: Type-specific configuration parameters for the step
+          additionalProperties: true
+        enabled:
+          type: boolean
+          description: Whether the step is enabled for execution
+          default: true
+    WorkflowStep:
+      type: object
+      description: A single processing step within a workflow. Steps are executed in sequence and each performs a specific data processing operation.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the step
+        name:
+          type: string
+          description: The display name of the step
+        type:
+          type: string
+          description: The type of processing operation the step performs
+          enum:
+          - extraction
+          - transformation
+          - validation
+          - enrichment
+          - routing
+          - notification
+          - export
+          - custom
+        position:
+          type: integer
+          description: The position of the step in the workflow sequence (0-based)
+          minimum: 0
+        configuration:
+          type: object
+          description: Type-specific configuration parameters for the step
+          additionalProperties: true
+        enabled:
+          type: boolean
+          description: Whether the step is enabled for execution
+          default: true
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
+  parameters:
+    WorkflowIdParam:
+      name: workflowId
+      in: path
+      required: true
+      description: The unique identifier of the workflow
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 access token obtained via the client credentials flow. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: Xceptor Document Upload API Documentation
+  url: https://docs.xceptor.com/api/documents
