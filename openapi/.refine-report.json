@@ -1,0 +1,32 @@
+{
+  "provider": "xceptor",
+  "sources": [
+    "xceptor-authentication-api-openapi.yml",
+    "xceptor-data-sources-api-openapi.yml",
+    "xceptor-documents-api-openapi.yml",
+    "xceptor-extraction-api-openapi.yml",
+    "xceptor-health-api-openapi.yml",
+    "xceptor-jobs-api-openapi.yml",
+    "xceptor-templates-api-openapi.yml",
+    "xceptor-workflow-runs-api-openapi.yml",
+    "xceptor-workflow-steps-api-openapi.yml",
+    "xceptor-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "xceptor-authentication-api-openapi.yml",
+    "xceptor-data-sources-api-openapi.yml",
+    "xceptor-documents-api-openapi.yml",
+    "xceptor-extraction-api-openapi.yml",
+    "xceptor-health-api-openapi.yml",
+    "xceptor-jobs-api-openapi.yml",
+    "xceptor-templates-api-openapi.yml",
+    "xceptor-workflow-runs-api-openapi.yml",
+    "xceptor-workflow-steps-api-openapi.yml",
+    "xceptor-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
