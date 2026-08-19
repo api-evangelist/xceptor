@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "37568414-9ddf-46c7-9a50-bad5e6836e18",
+      "name": "Health",
+      "description": {
+        "content": "Operations for checking the health and status of the Xceptor API services.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d74844c6-3afd-4cc3-af8c-b860ecd62987",
+          "name": "Xceptor Check API Health",
+          "request": {
+            "name": "Xceptor Check API Health",
+            "description": {
+              "content": "Returns the current health status of the Xceptor API services, including the status of dependent services and components.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06c1cde4-7bcb-4c31-b646-40ed02393124",
+              "name": "API is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"degraded\",\n  \"version\": \"string\",\n  \"timestamp\": \"1986-04-08T01:11:47.262Z\",\n  \"services\": {\n    \"key_0\": \"unhealthy\",\n    \"key_1\": \"healthy\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17a71a98-21d0-42c2-8a9a-055061e5c531",
+              "name": "API is unhealthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"degraded\",\n  \"version\": \"string\",\n  \"timestamp\": \"1986-04-08T01:11:47.262Z\",\n  \"services\": {\n    \"key_0\": \"unhealthy\",\n    \"key_1\": \"healthy\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.xceptor.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0cb01079-9947-4f27-ad8c-e31a86bfec8c",
+    "name": "Xceptor Document Upload Authentication Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.\n\nContact Support:\n Name: Xceptor API Support\n Email: api-support@xceptor.com",
+      "type": "text/plain"
+    }
+  }
+}

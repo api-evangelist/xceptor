@@ -1,0 +1,407 @@
+{
+  "item": [
+    {
+      "id": "285f518d-1616-4548-8732-3d86632b57d2",
+      "name": "Data Sources",
+      "description": {
+        "content": "Operations for configuring and managing connections to external data sources used by the Xceptor platform.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b74feb9-cf71-4319-8487-33443153e7a3",
+          "name": "Xceptor List Data Sources",
+          "request": {
+            "name": "Xceptor List Data Sources",
+            "description": {
+              "content": "Retrieves a list of configured data sources available in the Xceptor platform. Data sources represent connections to external systems from which data is ingested or to which data is exported, including databases, cloud storage, messaging systems, and file systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for pagination (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "25",
+                  "description": "The number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by data source type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40160cc2-98a1-4e3a-a179-124333565abf",
+              "name": "A list of data sources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"2dec8938-7089-a6ef-ebb6-3796afa88e19\",\n      \"name\": \"string\",\n      \"type\": \"api\",\n      \"status\": \"connected\",\n      \"created_at\": \"1976-02-07T20:18:01.797Z\",\n      \"updated_at\": \"2018-10-30T16:42:20.005Z\",\n      \"last_used_at\": \"2019-08-17T07:42:12.654Z\"\n    },\n    {\n      \"id\": \"fab09ebe-e39f-190d-a488-cabf0dd8df7f\",\n      \"name\": \"string\",\n      \"type\": \"sftp\",\n      \"status\": \"disconnected\",\n      \"created_at\": \"1960-10-21T10:34:27.239Z\",\n      \"updated_at\": \"1949-11-12T03:13:01.046Z\",\n      \"last_used_at\": \"1961-03-15T01:57:30.318Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7836,\n    \"page_size\": 9822,\n    \"total_items\": 4207,\n    \"total_pages\": 1373\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f246f9e0-ca27-442b-95cd-07af72a53eb9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68dde8c8-b4c3-4ce4-9a34-3ffc311e8795",
+          "name": "Xceptor Get Data Source Details",
+          "request": {
+            "name": "Xceptor Get Data Source Details",
+            "description": {
+              "content": "Retrieves the configuration details of a specific data source, including its connection parameters, status, and usage statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasources",
+                ":datasourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "datasourceId",
+                  "description": "(Required) The unique identifier of the data source"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0388ecff-f89a-437f-aa7d-8f1fd4a325d8",
+              "name": "Data source details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasources",
+                    ":datasourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "datasourceId",
+                      "description": "(Required) The unique identifier of the data source"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"35bd7abc-6588-66e8-388b-a34da3136eb0\",\n  \"name\": \"string\",\n  \"type\": \"cloud_storage\",\n  \"status\": \"disconnected\",\n  \"created_at\": \"1955-12-19T08:42:12.985Z\",\n  \"updated_at\": \"1970-10-21T03:09:12.632Z\",\n  \"last_used_at\": \"1989-05-06T15:55:04.640Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76cd8949-4e23-4db2-a126-4567da1dc6ad",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasources",
+                    ":datasourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "datasourceId",
+                      "description": "(Required) The unique identifier of the data source"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5b86fde-bf6d-47f8-b761-98425f9eb808",
+              "name": "Data source not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasources",
+                    ":datasourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "datasourceId",
+                      "description": "(Required) The unique identifier of the data source"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.xceptor.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "809e88fc-5c6c-48c6-be7d-3576aed9e2c6",
+    "name": "Xceptor Document Upload Authentication Data Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.\n\nContact Support:\n Name: Xceptor API Support\n Email: api-support@xceptor.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "item": [
+    {
+      "id": "9ba69c41-a9d2-41b3-9979-b209e97ac566",
+      "name": "Templates",
+      "description": {
+        "content": "Operations for managing extraction templates that define the fields and tables to extract from specific document types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ae872d1-e437-48e0-8362-18d6b4ba548f",
+          "name": "Xceptor List extraction templates",
+          "request": {
+            "name": "Xceptor List extraction templates",
+            "description": {
+              "content": "Retrieves a list of available extraction templates. Templates define the fields and tables to extract from specific document types, along with validation rules and confidence thresholds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for pagination (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "25",
+                  "description": "The number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "document_type",
+                  "value": "<string>",
+                  "description": "Filter templates by document type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "597e909e-00f0-4698-a4cc-619024979d91",
+              "name": "A list of extraction templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "document_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"d7d5b2ae-c92f-f3e2-df9a-e5206f5ad013\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"document_type\": \"string\",\n      \"field_definitions\": [\n        {\n          \"name\": \"string\",\n          \"data_type\": \"currency\",\n          \"required\": false,\n          \"validation_pattern\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"data_type\": \"currency\",\n          \"required\": true,\n          \"validation_pattern\": \"string\"\n        }\n      ],\n      \"table_definitions\": [\n        {\n          \"name\": \"string\",\n          \"columns\": [\n            {\n              \"name\": \"string\",\n              \"data_type\": \"currency\"\n            },\n            {\n              \"name\": \"string\",\n              \"data_type\": \"string\"\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"columns\": [\n            {\n              \"name\": \"string\",\n              \"data_type\": \"date\"\n            },\n            {\n              \"name\": \"string\",\n              \"data_type\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"confidence_threshold\": 0.85,\n      \"created_at\": \"1956-02-19T04:15:09.658Z\",\n      \"updated_at\": \"1980-04-09T01:54:14.136Z\"\n    },\n    {\n      \"id\": \"273f94ad-e6ce-5f80-f4b5-b1f09d679119\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"document_type\": \"string\",\n      \"field_definitions\": [\n        {\n          \"name\": \"string\",\n          \"data_type\": \"number\",\n          \"required\": true,\n          \"validation_pattern\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"data_type\": \"number\",\n          \"required\": true,\n          \"validation_pattern\": \"string\"\n        }\n      ],\n      \"table_definitions\": [\n        {\n          \"name\": \"string\",\n          \"columns\": [\n            {\n              \"name\": \"string\",\n              \"data_type\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"data_type\": \"boolean\"\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"columns\": [\n            {\n              \"name\": \"string\",\n              \"data_type\": \"boolean\"\n            },\n            {\n              \"name\": \"string\",\n              \"data_type\": \"number\"\n            }\n          ]\n        }\n      ],\n      \"confidence_threshold\": 0.85,\n      \"created_at\": \"1986-06-01T03:12:20.846Z\",\n      \"updated_at\": \"1951-07-04T14:43:15.122Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 972,\n    \"page_size\": 9503,\n    \"total_items\": 3569,\n    \"total_pages\": 2921\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2aa0a4e-b690-44b8-b5de-3c987c6e85a5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "document_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 1570\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "492a803f-48fd-4d34-a68d-575f61eca0f7",
+          "name": "Xceptor Get template details",
+          "request": {
+            "name": "Xceptor Get template details",
+            "description": {
+              "content": "Retrieves the full definition of an extraction template, including its field definitions, table definitions, validation rules, and confidence thresholds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "templateId",
+                  "description": "(Required) The unique identifier of the extraction template"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5973b68c-e20a-4ae7-a644-ffabc72f1263",
+              "name": "Template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "templateId",
+                      "description": "(Required) The unique identifier of the extraction template"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"52b59860-2883-fa7d-4d82-01318408fc01\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"document_type\": \"string\",\n  \"field_definitions\": [\n    {\n      \"name\": \"string\",\n      \"data_type\": \"string\",\n      \"required\": true,\n      \"validation_pattern\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"data_type\": \"number\",\n      \"required\": false,\n      \"validation_pattern\": \"string\"\n    }\n  ],\n  \"table_definitions\": [\n    {\n      \"name\": \"string\",\n      \"columns\": [\n        {\n          \"name\": \"string\",\n          \"data_type\": \"boolean\"\n        },\n        {\n          \"name\": \"string\",\n          \"data_type\": \"boolean\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"columns\": [\n        {\n          \"name\": \"string\",\n          \"data_type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"data_type\": \"currency\"\n        }\n      ]\n    }\n  ],\n  \"confidence_threshold\": 0.85,\n  \"created_at\": \"2009-05-14T20:50:05.661Z\",\n  \"updated_at\": \"1978-06-01T09:05:03.124Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "161fd436-c50c-415f-9eb4-28741cc34a70",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "templateId",
+                      "description": "(Required) The unique identifier of the extraction template"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 1570\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c13f4b6e-4b02-444d-b9fb-d2561dca4a97",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "templateId",
+                      "description": "(Required) The unique identifier of the extraction template"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 1570\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.xceptor.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a309c285-2257-4eae-8aa8-b089ccb97744",
+    "name": "Xceptor Document Upload Authentication Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.\n\nContact Support:\n Name: Xceptor API Support\n Email: api-support@xceptor.com",
+      "type": "text/plain"
+    }
+  }
+}

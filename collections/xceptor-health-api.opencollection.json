@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor Document Upload Authentication Health API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor Check API Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/health"
+          },
+          "docs": "Returns the current health status of the Xceptor API services, including the status of dependent services and components."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

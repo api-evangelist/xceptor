@@ -1,0 +1,1129 @@
+{
+  "item": [
+    {
+      "id": "04ab49f2-a4b7-4fe1-9439-17498b7570b4",
+      "name": "Workflows",
+      "description": {
+        "content": "Operations for creating, updating, listing, and deleting workflow definitions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9e4992c5-90aa-4bac-a2a9-c0765154d201",
+          "name": "Xceptor List Workflows",
+          "request": {
+            "name": "Xceptor List Workflows",
+            "description": {
+              "content": "Retrieves a paginated list of workflow definitions configured in the Xceptor platform. Workflows can be filtered by status, category, and name. Each workflow defines a multi-step data processing pipeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for pagination (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "25",
+                  "description": "The number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter workflows by their activation status"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter workflows by category"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search workflows by name or description"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "760279d7-cd0e-4048-9eb0-05c1b8afb9b6",
+              "name": "A paginated list of workflows",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"8f5e0e38-8af4-3234-207f-2bb5115240df\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"active\",\n      \"category\": \"string\",\n      \"trigger_type\": \"scheduled\",\n      \"schedule\": \"string\",\n      \"steps\": [\n        {\n          \"id\": \"bbe13379-f345-fd25-8229-8e9fe851fd57\",\n          \"name\": \"string\",\n          \"type\": \"validation\",\n          \"position\": 6116,\n          \"configuration\": {\n            \"key_0\": \"string\"\n          },\n          \"enabled\": true\n        },\n        {\n          \"id\": \"acc799b0-dada-7fa6-3c97-011bd7cbbe28\",\n          \"name\": \"string\",\n          \"type\": \"routing\",\n          \"position\": 665,\n          \"configuration\": {\n            \"key_0\": 6950,\n            \"key_1\": \"string\"\n          },\n          \"enabled\": true\n        }\n      ],\n      \"created_at\": \"1995-08-09T11:36:45.180Z\",\n      \"updated_at\": \"1977-05-29T19:01:21.716Z\",\n      \"created_by\": \"string\"\n    },\n    {\n      \"id\": \"98d17ef3-ec33-de37-0e52-57165594d868\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"inactive\",\n      \"category\": \"string\",\n      \"trigger_type\": \"event\",\n      \"schedule\": \"string\",\n      \"steps\": [\n        {\n          \"id\": \"2ca1749d-d427-e6c2-3c2f-f7ebf8be02f2\",\n          \"name\": \"string\",\n          \"type\": \"enrichment\",\n          \"position\": 6143,\n          \"configuration\": {\n            \"key_0\": false,\n            \"key_1\": 4264.3891014601895\n          },\n          \"enabled\": true\n        },\n        {\n          \"id\": \"8f163ed0-2627-155e-264a-f9adb8008289\",\n          \"name\": \"string\",\n          \"type\": \"custom\",\n          \"position\": 887,\n          \"configuration\": {\n            \"key_0\": 1128,\n            \"key_1\": 9221,\n            \"key_2\": 4348.072944266087\n          },\n          \"enabled\": true\n        }\n      ],\n      \"created_at\": \"2001-03-13T06:24:56.260Z\",\n      \"updated_at\": \"1989-10-10T17:01:32.391Z\",\n      \"created_by\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 2714,\n    \"page_size\": 9338,\n    \"total_items\": 6974,\n    \"total_pages\": 5589\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e84fb5b-1e30-47a2-8424-d2c25aa60581",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "25"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c1a8a32-84c6-4405-9246-3cd4412c54bf",
+          "name": "Xceptor Create Workflow",
+          "request": {
+            "name": "Xceptor Create Workflow",
+            "description": {
+              "content": "Creates a new workflow definition in the Xceptor platform. A workflow defines a sequence of processing steps that are executed in order to transform, validate, enrich, and route data through the automation pipeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac049c1d-df49-46f1-a881-4116eae187a3",
+              "name": "Workflow created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"aa1c6b5a-5f47-cdde-5f5b-2225ea0affc4\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"inactive\",\n  \"category\": \"string\",\n  \"trigger_type\": \"event\",\n  \"schedule\": \"string\",\n  \"steps\": [\n    {\n      \"id\": \"617c89ae-f44b-4e70-9145-2abec277fc2d\",\n      \"name\": \"string\",\n      \"type\": \"extraction\",\n      \"position\": 1997,\n      \"configuration\": {\n        \"key_0\": 7719,\n        \"key_1\": 6450.678287759949,\n        \"key_2\": \"string\"\n      },\n      \"enabled\": true\n    },\n    {\n      \"id\": \"dc80b656-63f1-a888-f988-cbcc31b774be\",\n      \"name\": \"string\",\n      \"type\": \"custom\",\n      \"position\": 9958,\n      \"configuration\": {\n        \"key_0\": true,\n        \"key_1\": 2849.9844128480654\n      },\n      \"enabled\": true\n    }\n  ],\n  \"created_at\": \"2013-06-22T04:31:04.515Z\",\n  \"updated_at\": \"2002-02-01T11:40:30.547Z\",\n  \"created_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6477b679-9d39-46f8-b384-ce73310b3488",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dadc0890-82ab-41bc-a15f-5bf4ef86efbb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba9c0603-4a2c-4277-b648-ca25ab1a10fd",
+          "name": "Xceptor Get Workflow Details",
+          "request": {
+            "name": "Xceptor Get Workflow Details",
+            "description": {
+              "content": "Retrieves the full definition of a specific workflow, including its steps, trigger configuration, and associated metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workflowId",
+                  "description": "(Required) The unique identifier of the workflow"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a220d38-0949-4b70-91dc-4e41d879831d",
+              "name": "Workflow details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"aa1c6b5a-5f47-cdde-5f5b-2225ea0affc4\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"inactive\",\n  \"category\": \"string\",\n  \"trigger_type\": \"event\",\n  \"schedule\": \"string\",\n  \"steps\": [\n    {\n      \"id\": \"617c89ae-f44b-4e70-9145-2abec277fc2d\",\n      \"name\": \"string\",\n      \"type\": \"extraction\",\n      \"position\": 1997,\n      \"configuration\": {\n        \"key_0\": 7719,\n        \"key_1\": 6450.678287759949,\n        \"key_2\": \"string\"\n      },\n      \"enabled\": true\n    },\n    {\n      \"id\": \"dc80b656-63f1-a888-f988-cbcc31b774be\",\n      \"name\": \"string\",\n      \"type\": \"custom\",\n      \"position\": 9958,\n      \"configuration\": {\n        \"key_0\": true,\n        \"key_1\": 2849.9844128480654\n      },\n      \"enabled\": true\n    }\n  ],\n  \"created_at\": \"2013-06-22T04:31:04.515Z\",\n  \"updated_at\": \"2002-02-01T11:40:30.547Z\",\n  \"created_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cda14ad1-9c37-47df-b3f4-3ff11d36a3fe",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48260a11-d98c-42ee-852e-ebed9d658a74",
+              "name": "Workflow not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f38345e-0609-4ceb-ae46-9541d57579ab",
+          "name": "Xceptor Update Workflow",
+          "request": {
+            "name": "Xceptor Update Workflow",
+            "description": {
+              "content": "Updates an existing workflow definition. Changes to active workflows take effect on subsequent runs. Running instances continue to use the previous version until completion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workflowId",
+                  "description": "(Required) The unique identifier of the workflow"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1e03b3c-8214-401f-a5a8-1b02eebb5ba5",
+              "name": "Workflow updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"aa1c6b5a-5f47-cdde-5f5b-2225ea0affc4\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"inactive\",\n  \"category\": \"string\",\n  \"trigger_type\": \"event\",\n  \"schedule\": \"string\",\n  \"steps\": [\n    {\n      \"id\": \"617c89ae-f44b-4e70-9145-2abec277fc2d\",\n      \"name\": \"string\",\n      \"type\": \"extraction\",\n      \"position\": 1997,\n      \"configuration\": {\n        \"key_0\": 7719,\n        \"key_1\": 6450.678287759949,\n        \"key_2\": \"string\"\n      },\n      \"enabled\": true\n    },\n    {\n      \"id\": \"dc80b656-63f1-a888-f988-cbcc31b774be\",\n      \"name\": \"string\",\n      \"type\": \"custom\",\n      \"position\": 9958,\n      \"configuration\": {\n        \"key_0\": true,\n        \"key_1\": 2849.9844128480654\n      },\n      \"enabled\": true\n    }\n  ],\n  \"created_at\": \"2013-06-22T04:31:04.515Z\",\n  \"updated_at\": \"2002-02-01T11:40:30.547Z\",\n  \"created_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2344864-f3be-4cd6-afbf-f68a684ab419",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79ce54f0-3052-4ee2-aae8-9429ea32c9e0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "222b75d0-4a62-40a9-b529-9c1604a84fe2",
+              "name": "Workflow not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": \"<string>\",\n  \"trigger_type\": \"<string>\",\n  \"schedule\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9e13dbc-ed8d-4fd0-a559-7b0f5f1f4aa7",
+          "name": "Xceptor Delete Workflow",
+          "request": {
+            "name": "Xceptor Delete Workflow",
+            "description": {
+              "content": "Deletes a workflow definition. Active workflows must be deactivated before deletion. Any running instances will complete before the workflow is removed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workflowId",
+                  "description": "(Required) The unique identifier of the workflow"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e39d366-32f6-472b-81a6-1f63973b5a42",
+              "name": "Workflow deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e0bc381-ec63-494c-a5ea-26ba01dcaf1e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e0764bb-19af-45be-8f8b-f087973a5864",
+              "name": "Workflow not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowId",
+                      "description": "(Required) The unique identifier of the workflow"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 3077,\n    \"key_1\": 6179.547809706191\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.xceptor.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "41a6af29-1be6-4056-bb38-58de4a5b01e8",
+    "name": "Xceptor Document Upload Authentication Workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.\n\nContact Support:\n Name: Xceptor API Support\n Email: api-support@xceptor.com",
+      "type": "text/plain"
+    }
+  }
+}

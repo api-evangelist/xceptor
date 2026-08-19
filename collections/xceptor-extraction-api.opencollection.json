@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor Document Upload Authentication Extraction API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extraction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor Get extraction results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/documents/:documentId/extraction",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ]
+          },
+          "docs": "Retrieves the data extraction results for a processed document. The results include all extracted fields and tables with their values, locations in the source document, and AI confidence scores. Fields with confidence scores below the configured threshold are flagged for manual review."
+        },
+        {
+          "info": {
+            "name": "Xceptor Trigger document extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/documents/:documentId/extraction",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually triggers the data extraction process for a document that has been uploaded but not yet processed, or re-triggers extraction with a different template. The extraction runs asynchronously and results can be retrieved once the document status transitions to extracted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

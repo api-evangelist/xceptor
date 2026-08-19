@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor Document Upload Authentication Workflow Steps API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Steps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List Workflow Steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/steps",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ]
+          },
+          "docs": "Retrieves the ordered list of processing steps that compose a workflow. Each step represents a distinct processing operation such as extraction, transformation, validation, enrichment, or routing."
+        },
+        {
+          "info": {
+            "name": "Xceptor Add Workflow Step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/steps",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new processing step to a workflow. The step is inserted at the specified position in the workflow sequence. Steps can be configured with type-specific parameters for extraction, transformation, validation, and other operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

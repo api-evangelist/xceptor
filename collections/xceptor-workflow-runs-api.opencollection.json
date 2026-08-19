@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor Document Upload Authentication Workflow Runs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List Workflow Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter runs by execution status"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of execution runs for a specific workflow. Each run represents a single execution of the workflow and includes status, timing, and output information."
+        },
+        {
+          "info": {
+            "name": "Xceptor Execute Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers an execution run of the specified workflow. The workflow is executed asynchronously and the run status can be monitored using the run details endpoint. Input parameters can be provided to configure the execution context."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get Workflow Run Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs/:runId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow run"
+              }
+            ]
+          },
+          "docs": "Retrieves the details and current status of a specific workflow run, including step-level progress, timing information, any errors encountered, and output references."
+        },
+        {
+          "info": {
+            "name": "Xceptor Cancel Workflow Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.xceptor.com/v1/workflows/:workflowId/runs/:runId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workflow run"
+              }
+            ]
+          },
+          "docs": "Cancels a pending or running workflow execution. The cancellation is asynchronous and the run status will transition to cancelled once all active steps have stopped processing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

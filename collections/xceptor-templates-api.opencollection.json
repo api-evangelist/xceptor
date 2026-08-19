@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xceptor Document Upload Authentication Templates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Xceptor List extraction templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/templates",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (1-based)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              },
+              {
+                "name": "document_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter templates by document type"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of available extraction templates. Templates define the fields and tables to extract from specific document types, along with validation rules and confidence thresholds."
+        },
+        {
+          "info": {
+            "name": "Xceptor Get template details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.xceptor.com/v1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the extraction template"
+              }
+            ]
+          },
+          "docs": "Retrieves the full definition of an extraction template, including its field definitions, table definitions, validation rules, and confidence thresholds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
