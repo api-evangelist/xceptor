@@ -28,6 +28,17 @@ tags:
   - Document Processing
   - ETL
   - Financial Data
+  - Financial-Services
+  - Intelligent Document Processing
+  - Reconciliations
+  - Trade Operations
+tags_raw:
+  - API Integration
+  - Data Automation
+  - Data Extraction
+  - Document Processing
+  - ETL
+  - Financial Data
   - Financial Services
   - Intelligent Document Processing
   - Reconciliations
@@ -101,6 +112,12 @@ apis:
   - type: Documentation
     url: https://www.xceptor.com/platform/connectors
   tags:
+  - Cloud
+  - Connectors
+  - Financial Data
+  - Integration
+  - Swift
+  tags_raw:
   - Cloud
   - Connectors
   - Financial Data
@@ -187,6 +204,8 @@ apis:
   humanURL: https://www.xceptor.com/api
   baseURL: https://api.xceptor.com/v1
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
