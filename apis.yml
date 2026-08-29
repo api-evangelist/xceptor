@@ -3,6 +3,18 @@ name: Xceptor
 description: >-
   Xceptor is a data automation platform that helps organizations extract, transform, and integrate data from various
   sources, particularly focused on document processing and financial data automation.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
