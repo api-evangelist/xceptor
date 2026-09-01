@@ -128,7 +128,7 @@ apis:
   - Connectors
   - Financial Data
   - Integration
-  - SWIFT
+  - Swift
   tags_raw:
   - Cloud
   - Connectors
