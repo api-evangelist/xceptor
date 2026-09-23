@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Xceptor Document Upload Authentication Templates API
-  description: API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.
+  title: Xceptor Document Upload Templates API
+  description: API for uploading and processing documents through Xceptor's data extraction engine.
   version: '1.0'
   contact:
     name: Xceptor API Support
@@ -100,6 +100,42 @@ components:
                 - currency
                 - boolean
           description: The expected columns in the table
+    FieldDefinition:
+      type: object
+      description: A field definition within an extraction template
+      properties:
+        name:
+          type: string
+          description: The name of the field to extract
+        data_type:
+          type: string
+          description: The expected data type of the field
+          enum:
+          - string
+          - number
+          - date
+          - currency
+          - boolean
+        required:
+          type: boolean
+          description: Whether the field is required in the extraction output
+        validation_pattern:
+          type: string
+          description: A regular expression pattern for validating extracted values
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
     Pagination:
       type: object
       description: Pagination information for list responses
@@ -116,6 +152,17 @@ components:
         total_pages:
           type: integer
           description: The total number of pages
+    TemplateList:
+      type: object
+      description: A paginated list of extraction templates
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+          description: The list of templates for the current page
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Template:
       type: object
       description: An extraction template that defines the fields and tables to extract from a specific document type, along with validation rules and confidence thresholds.
@@ -157,53 +204,6 @@ components:
           type: string
           format: date-time
           description: The date and time the template was last updated
-    TemplateList:
-      type: object
-      description: A paginated list of extraction templates
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template'
-          description: The list of templates for the current page
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
-    FieldDefinition:
-      type: object
-      description: A field definition within an extraction template
-      properties:
-        name:
-          type: string
-          description: The name of the field to extract
-        data_type:
-          type: string
-          description: The expected data type of the field
-          enum:
-          - string
-          - number
-          - date
-          - currency
-          - boolean
-        required:
-          type: boolean
-          description: Whether the field is required in the extraction output
-        validation_pattern:
-          type: string
-          description: A regular expression pattern for validating extracted values
   parameters:
     PageParam:
       name: page

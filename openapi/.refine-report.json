@@ -1,25 +1,18 @@
 {
   "provider": "xceptor",
   "sources": [
-    "xceptor-authentication-api-openapi.yml",
-    "xceptor-data-sources-api-openapi.yml",
-    "xceptor-documents-api-openapi.yml",
-    "xceptor-extraction-api-openapi.yml",
-    "xceptor-health-api-openapi.yml",
-    "xceptor-jobs-api-openapi.yml",
-    "xceptor-templates-api-openapi.yml",
-    "xceptor-workflow-runs-api-openapi.yml",
-    "xceptor-workflow-steps-api-openapi.yml",
-    "xceptor-workflows-api-openapi.yml"
+    "_original/xceptor-document-upload-api-openapi.yml",
+    "_original/xceptor-rest-api-openapi.yml",
+    "_original/xceptor-workflow-api-openapi.yml"
   ],
   "outputs": [
-    "xceptor-authentication-api-openapi.yml",
-    "xceptor-data-sources-api-openapi.yml",
     "xceptor-documents-api-openapi.yml",
     "xceptor-extraction-api-openapi.yml",
+    "xceptor-templates-api-openapi.yml",
+    "xceptor-authentication-api-openapi.yml",
+    "xceptor-data-sources-api-openapi.yml",
     "xceptor-health-api-openapi.yml",
     "xceptor-jobs-api-openapi.yml",
-    "xceptor-templates-api-openapi.yml",
     "xceptor-workflow-runs-api-openapi.yml",
     "xceptor-workflow-steps-api-openapi.yml",
     "xceptor-workflows-api-openapi.yml"
@@ -27,6 +20,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "xceptor-document-upload-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "xceptor-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "xceptor-workflow-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "xceptor-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-data-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-extraction-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-workflow-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-workflow-steps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xceptor-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

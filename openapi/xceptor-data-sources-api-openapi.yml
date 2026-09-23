@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Xceptor Document Upload Authentication Data Sources API
-  description: API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.
+  title: Xceptor REST Data Sources API
+  description: RESTful API for managing data processing workflows, document ingestion, and data extraction in Xceptor. Provides programmatic access to the Xceptor data automation platform for integrating with existing systems and orchestrating automated data processing pipelines. The API supports authentication, job management, data source configuration, and monitoring of processing activities across the platform.
   version: '1.0'
   contact:
     name: Xceptor API Support
@@ -82,31 +82,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    DataSourceList:
-      type: object
-      description: A paginated list of data sources
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSource'
-          description: The list of data sources for the current page
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
     DataSource:
       type: object
       description: A configured connection to an external data system used by the Xceptor platform for ingesting or exporting data.
@@ -147,6 +122,31 @@ components:
           type: string
           format: date-time
           description: The date and time the data source was last used
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
+    DataSourceList:
+      type: object
+      description: A paginated list of data sources
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSource'
+          description: The list of data sources for the current page
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       description: Pagination information for list responses
@@ -196,5 +196,5 @@ components:
       bearerFormat: JWT
       description: OAuth2 access token obtained via the client credentials flow. Include as a Bearer token in the Authorization header.
 externalDocs:
-  description: Xceptor Document Upload API Documentation
-  url: https://docs.xceptor.com/api/documents
+  description: Xceptor REST API Documentation
+  url: https://docs.xceptor.com/api/rest

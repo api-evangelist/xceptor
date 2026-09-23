@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Xceptor Document Upload Authentication Extraction API
-  description: API for uploading and processing documents through Xceptor's data extraction engine. Supports intelligent document processing using NLP, OCR, and generative AI to transform unstructured documents including PDFs, emails, spreadsheets, and handwritten forms into structured, trusted data. The API handles document ingestion, classification, field and table extraction, and confidence-scored output for financial services use cases such as trade confirmations, tax documents, loan notices, and client onboarding materials.
+  title: Xceptor Document Upload Extraction API
+  description: API for uploading and processing documents through Xceptor's data extraction engine.
   version: '1.0'
   contact:
     name: Xceptor API Support
@@ -90,48 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ExtractedTable:
-      type: object
-      description: A table extracted from a document with its rows and column headers
-      properties:
-        name:
-          type: string
-          description: The name or label of the extracted table
-        headers:
-          type: array
-          items:
-            type: string
-          description: The column headers of the extracted table
-        rows:
-          type: array
-          items:
-            type: array
-            items:
-              description: A cell value in the table row
-          description: The data rows of the extracted table
-        confidence:
-          type: number
-          description: The confidence score for the table extraction (0.0 to 1.0)
-          minimum: 0.0
-          maximum: 1.0
-        page_number:
-          type: integer
-          description: The page number where the table was found
-          minimum: 1
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
     BoundingBox:
       type: object
       description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
@@ -291,6 +249,48 @@ components:
           type: string
           format: date-time
           description: The date and time the extraction was performed
+    ExtractedTable:
+      type: object
+      description: A table extracted from a document with its rows and column headers
+      properties:
+        name:
+          type: string
+          description: The name or label of the extracted table
+        headers:
+          type: array
+          items:
+            type: string
+          description: The column headers of the extracted table
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              description: A cell value in the table row
+          description: The data rows of the extracted table
+        confidence:
+          type: number
+          description: The confidence score for the table extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        page_number:
+          type: integer
+          description: The page number where the table was found
+          minimum: 1
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
   parameters:
     DocumentIdParam:
       name: documentId
