@@ -122,31 +122,6 @@ components:
           type: string
           format: date-time
           description: The date and time the data source was last used
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
-    DataSourceList:
-      type: object
-      description: A paginated list of data sources
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSource'
-          description: The list of data sources for the current page
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       description: Pagination information for list responses
@@ -163,23 +138,32 @@ components:
         total_pages:
           type: integer
           description: The total number of pages
+    DataSourceList:
+      type: object
+      description: A paginated list of data sources
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSource'
+          description: The list of data sources for the current page
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
   parameters:
-    PageParam:
-      name: page
-      in: query
-      description: The page number for pagination (1-based)
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    DataSourceIdParam:
-      name: datasourceId
-      in: path
-      required: true
-      description: The unique identifier of the data source
-      schema:
-        type: string
-        format: uuid
     PageSizeParam:
       name: page_size
       in: query
@@ -189,6 +173,22 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    DataSourceIdParam:
+      name: datasourceId
+      in: path
+      required: true
+      description: The unique identifier of the data source
+      schema:
+        type: string
+        format: uuid
+    PageParam:
+      name: page
+      in: query
+      description: The page number for pagination (1-based)
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     bearerAuth:
       type: http

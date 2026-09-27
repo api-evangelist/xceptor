@@ -41,7 +41,7 @@ tags:
   - Document Processing
   - ETL
   - Financial Data
-  - Financial-Services
+  - Financial Services
   - Intelligent Document Processing
   - Reconciliation
   - Trade Operations
@@ -56,6 +56,7 @@ tags_raw:
   - Intelligent Document Processing
   - Reconciliations
   - Trade Operations
+  - Financial-Services
 apis:
 - name: Xceptor Workflow API
   description: >-

@@ -256,6 +256,53 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    BatchUploadResult:
+      type: object
+      description: The result of a batch document upload operation
+      properties:
+        batch_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the batch
+        total_files:
+          type: integer
+          description: The total number of files in the batch
+        accepted:
+          type: integer
+          description: The number of files accepted for processing
+        rejected:
+          type: integer
+          description: The number of files rejected due to errors
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+          description: The list of accepted documents
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchFileError'
+          description: Errors for rejected files
+    BatchFileError:
+      type: object
+      description: An error associated with a specific file in a batch upload
+      properties:
+        filename:
+          type: string
+          description: The name of the file that was rejected
+        error:
+          $ref: '#/components/schemas/Error'
+    DocumentList:
+      type: object
+      description: A paginated list of documents
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+          description: The list of documents for the current page
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Document:
       type: object
       description: A document that has been uploaded to the Xceptor platform for intelligent data extraction and processing.
@@ -313,56 +360,6 @@ components:
           type: object
           description: Custom metadata associated with the document
           additionalProperties: true
-    BatchFileError:
-      type: object
-      description: An error associated with a specific file in a batch upload
-      properties:
-        filename:
-          type: string
-          description: The name of the file that was rejected
-        error:
-          $ref: '#/components/schemas/Error'
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
-    BatchUploadResult:
-      type: object
-      description: The result of a batch document upload operation
-      properties:
-        batch_id:
-          type: string
-          format: uuid
-          description: The unique identifier of the batch
-        total_files:
-          type: integer
-          description: The total number of files in the batch
-        accepted:
-          type: integer
-          description: The number of files accepted for processing
-        rejected:
-          type: integer
-          description: The number of files rejected due to errors
-        documents:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-          description: The list of accepted documents
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/BatchFileError'
-          description: Errors for rejected files
     Pagination:
       type: object
       description: Pagination information for list responses
@@ -379,17 +376,20 @@ components:
         total_pages:
           type: integer
           description: The total number of pages
-    DocumentList:
+    Error:
       type: object
-      description: A paginated list of documents
+      description: An error response from the Xceptor API
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-          description: The list of documents for the current page
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
   parameters:
     DocumentIdParam:
       name: documentId
@@ -399,14 +399,6 @@ components:
       schema:
         type: string
         format: uuid
-    PageParam:
-      name: page
-      in: query
-      description: The page number for pagination (1-based)
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     PageSizeParam:
       name: page_size
       in: query
@@ -416,6 +408,14 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    PageParam:
+      name: page
+      in: query
+      description: The page number for pagination (1-based)
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     bearerAuth:
       type: http

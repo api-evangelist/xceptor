@@ -90,30 +90,52 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    BoundingBox:
+    ExtractionResult:
       type: object
-      description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
+      description: The data extraction results for a processed document, including all extracted fields, tables, and their confidence scores.
       properties:
-        x:
+        document_id:
+          type: string
+          format: uuid
+          description: The identifier of the source document
+        template_id:
+          type: string
+          format: uuid
+          description: The extraction template that was applied
+        classification:
+          type: string
+          description: The classified document type
+        extraction_method:
+          type: string
+          description: The AI method used for extraction
+          enum:
+          - ocr
+          - nlp
+          - generative_ai
+          - template_based
+          - hybrid
+        overall_confidence:
           type: number
-          description: The x-coordinate of the top-left corner
+          description: The overall confidence score for the extraction (0.0 to 1.0)
           minimum: 0.0
           maximum: 1.0
-        y:
-          type: number
-          description: The y-coordinate of the top-left corner
-          minimum: 0.0
-          maximum: 1.0
-        width:
-          type: number
-          description: The width of the bounding box
-          minimum: 0.0
-          maximum: 1.0
-        height:
-          type: number
-          description: The height of the bounding box
-          minimum: 0.0
-          maximum: 1.0
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractedField'
+          description: The list of extracted fields with values and confidence scores
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractedTable'
+          description: The list of extracted tables
+        requires_review:
+          type: boolean
+          description: Whether any extracted values fall below the confidence threshold and require manual review
+        extracted_at:
+          type: string
+          format: date-time
+          description: The date and time the extraction was performed
     ExtractedField:
       type: object
       description: A single field extracted from a document with its value and metadata
@@ -203,52 +225,6 @@ components:
           type: object
           description: Custom metadata associated with the document
           additionalProperties: true
-    ExtractionResult:
-      type: object
-      description: The data extraction results for a processed document, including all extracted fields, tables, and their confidence scores.
-      properties:
-        document_id:
-          type: string
-          format: uuid
-          description: The identifier of the source document
-        template_id:
-          type: string
-          format: uuid
-          description: The extraction template that was applied
-        classification:
-          type: string
-          description: The classified document type
-        extraction_method:
-          type: string
-          description: The AI method used for extraction
-          enum:
-          - ocr
-          - nlp
-          - generative_ai
-          - template_based
-          - hybrid
-        overall_confidence:
-          type: number
-          description: The overall confidence score for the extraction (0.0 to 1.0)
-          minimum: 0.0
-          maximum: 1.0
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractedField'
-          description: The list of extracted fields with values and confidence scores
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractedTable'
-          description: The list of extracted tables
-        requires_review:
-          type: boolean
-          description: Whether any extracted values fall below the confidence threshold and require manual review
-        extracted_at:
-          type: string
-          format: date-time
-          description: The date and time the extraction was performed
     ExtractedTable:
       type: object
       description: A table extracted from a document with its rows and column headers
@@ -291,6 +267,30 @@ components:
           type: object
           description: Additional error details when available
           additionalProperties: true
+    BoundingBox:
+      type: object
+      description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
+      properties:
+        x:
+          type: number
+          description: The x-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        y:
+          type: number
+          description: The y-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        width:
+          type: number
+          description: The width of the bounding box
+          minimum: 0.0
+          maximum: 1.0
+        height:
+          type: number
+          description: The height of the bounding box
+          minimum: 0.0
+          maximum: 1.0
   parameters:
     DocumentIdParam:
       name: documentId
