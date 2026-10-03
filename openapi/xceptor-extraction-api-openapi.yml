@@ -90,84 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ExtractionResult:
-      type: object
-      description: The data extraction results for a processed document, including all extracted fields, tables, and their confidence scores.
-      properties:
-        document_id:
-          type: string
-          format: uuid
-          description: The identifier of the source document
-        template_id:
-          type: string
-          format: uuid
-          description: The extraction template that was applied
-        classification:
-          type: string
-          description: The classified document type
-        extraction_method:
-          type: string
-          description: The AI method used for extraction
-          enum:
-          - ocr
-          - nlp
-          - generative_ai
-          - template_based
-          - hybrid
-        overall_confidence:
-          type: number
-          description: The overall confidence score for the extraction (0.0 to 1.0)
-          minimum: 0.0
-          maximum: 1.0
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractedField'
-          description: The list of extracted fields with values and confidence scores
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractedTable'
-          description: The list of extracted tables
-        requires_review:
-          type: boolean
-          description: Whether any extracted values fall below the confidence threshold and require manual review
-        extracted_at:
-          type: string
-          format: date-time
-          description: The date and time the extraction was performed
-    ExtractedField:
-      type: object
-      description: A single field extracted from a document with its value and metadata
-      properties:
-        name:
-          type: string
-          description: The name of the extracted field
-        value:
-          description: The extracted value of the field
-        data_type:
-          type: string
-          description: The data type of the extracted value
-          enum:
-          - string
-          - number
-          - date
-          - currency
-          - boolean
-        confidence:
-          type: number
-          description: The confidence score for this extraction (0.0 to 1.0)
-          minimum: 0.0
-          maximum: 1.0
-        page_number:
-          type: integer
-          description: The page number where the field was found
-          minimum: 1
-        bounding_box:
-          $ref: '#/components/schemas/BoundingBox'
-        requires_review:
-          type: boolean
-          description: Whether this field requires manual review due to low confidence
     Document:
       type: object
       description: A document that has been uploaded to the Xceptor platform for intelligent data extraction and processing.
@@ -225,6 +147,122 @@ components:
           type: object
           description: Custom metadata associated with the document
           additionalProperties: true
+    BoundingBox:
+      type: object
+      description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
+      properties:
+        x:
+          type: number
+          description: The x-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        y:
+          type: number
+          description: The y-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        width:
+          type: number
+          description: The width of the bounding box
+          minimum: 0.0
+          maximum: 1.0
+        height:
+          type: number
+          description: The height of the bounding box
+          minimum: 0.0
+          maximum: 1.0
+    ExtractedField:
+      type: object
+      description: A single field extracted from a document with its value and metadata
+      properties:
+        name:
+          type: string
+          description: The name of the extracted field
+        value:
+          description: The extracted value of the field
+        data_type:
+          type: string
+          description: The data type of the extracted value
+          enum:
+          - string
+          - number
+          - date
+          - currency
+          - boolean
+        confidence:
+          type: number
+          description: The confidence score for this extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        page_number:
+          type: integer
+          description: The page number where the field was found
+          minimum: 1
+        bounding_box:
+          $ref: '#/components/schemas/BoundingBox'
+        requires_review:
+          type: boolean
+          description: Whether this field requires manual review due to low confidence
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
+    ExtractionResult:
+      type: object
+      description: The data extraction results for a processed document, including all extracted fields, tables, and their confidence scores.
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          description: The identifier of the source document
+        template_id:
+          type: string
+          format: uuid
+          description: The extraction template that was applied
+        classification:
+          type: string
+          description: The classified document type
+        extraction_method:
+          type: string
+          description: The AI method used for extraction
+          enum:
+          - ocr
+          - nlp
+          - generative_ai
+          - template_based
+          - hybrid
+        overall_confidence:
+          type: number
+          description: The overall confidence score for the extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractedField'
+          description: The list of extracted fields with values and confidence scores
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractedTable'
+          description: The list of extracted tables
+        requires_review:
+          type: boolean
+          description: Whether any extracted values fall below the confidence threshold and require manual review
+        extracted_at:
+          type: string
+          format: date-time
+          description: The date and time the extraction was performed
     ExtractedTable:
       type: object
       description: A table extracted from a document with its rows and column headers
@@ -253,44 +291,6 @@ components:
           type: integer
           description: The page number where the table was found
           minimum: 1
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
-    BoundingBox:
-      type: object
-      description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
-      properties:
-        x:
-          type: number
-          description: The x-coordinate of the top-left corner
-          minimum: 0.0
-          maximum: 1.0
-        y:
-          type: number
-          description: The y-coordinate of the top-left corner
-          minimum: 0.0
-          maximum: 1.0
-        width:
-          type: number
-          description: The width of the bounding box
-          minimum: 0.0
-          maximum: 1.0
-        height:
-          type: number
-          description: The height of the bounding box
-          minimum: 0.0
-          maximum: 1.0
   parameters:
     DocumentIdParam:
       name: documentId
