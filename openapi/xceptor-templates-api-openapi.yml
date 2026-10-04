@@ -75,28 +75,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    FieldDefinition:
-      type: object
-      description: A field definition within an extraction template
-      properties:
-        name:
-          type: string
-          description: The name of the field to extract
-        data_type:
-          type: string
-          description: The expected data type of the field
-          enum:
-          - string
-          - number
-          - date
-          - currency
-          - boolean
-        required:
-          type: boolean
-          description: Whether the field is required in the extraction output
-        validation_pattern:
-          type: string
-          description: A regular expression pattern for validating extracted values
     TableDefinition:
       type: object
       description: A table definition within an extraction template
@@ -122,6 +100,44 @@ components:
                 - currency
                 - boolean
           description: The expected columns in the table
+    Pagination:
+      type: object
+      description: Pagination information for list responses
+      properties:
+        page:
+          type: integer
+          description: The current page number
+        page_size:
+          type: integer
+          description: The number of items per page
+        total_items:
+          type: integer
+          description: The total number of items across all pages
+        total_pages:
+          type: integer
+          description: The total number of pages
+    FieldDefinition:
+      type: object
+      description: A field definition within an extraction template
+      properties:
+        name:
+          type: string
+          description: The name of the field to extract
+        data_type:
+          type: string
+          description: The expected data type of the field
+          enum:
+          - string
+          - number
+          - date
+          - currency
+          - boolean
+        required:
+          type: boolean
+          description: Whether the field is required in the extraction output
+        validation_pattern:
+          type: string
+          description: A regular expression pattern for validating extracted values
     Template:
       type: object
       description: An extraction template that defines the fields and tables to extract from a specific document type, along with validation rules and confidence thresholds.
@@ -163,6 +179,17 @@ components:
           type: string
           format: date-time
           description: The date and time the template was last updated
+    TemplateList:
+      type: object
+      description: A paginated list of extraction templates
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+          description: The list of templates for the current page
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Error:
       type: object
       description: An error response from the Xceptor API
@@ -177,33 +204,6 @@ components:
           type: object
           description: Additional error details when available
           additionalProperties: true
-    Pagination:
-      type: object
-      description: Pagination information for list responses
-      properties:
-        page:
-          type: integer
-          description: The current page number
-        page_size:
-          type: integer
-          description: The number of items per page
-        total_items:
-          type: integer
-          description: The total number of items across all pages
-        total_pages:
-          type: integer
-          description: The total number of pages
-    TemplateList:
-      type: object
-      description: A paginated list of extraction templates
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template'
-          description: The list of templates for the current page
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   parameters:
     PageSizeParam:
       name: page_size

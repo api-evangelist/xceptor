@@ -208,6 +208,22 @@ components:
         type: string
         format: uuid
   schemas:
+    Pagination:
+      type: object
+      description: Pagination information for list responses
+      properties:
+        page:
+          type: integer
+          description: The current page number
+        page_size:
+          type: integer
+          description: The number of items per page
+        total_items:
+          type: integer
+          description: The total number of items across all pages
+        total_pages:
+          type: integer
+          description: The total number of pages
     WorkflowUpdate:
       type: object
       description: Request body for updating an existing workflow
@@ -242,36 +258,6 @@ components:
         schedule:
           type: string
           description: Cron expression for scheduled workflows. Required when trigger_type is scheduled.
-    WorkflowCreate:
-      type: object
-      description: Request body for creating a new workflow
-      required:
-      - name
-      - trigger_type
-      properties:
-        name:
-          type: string
-          description: The display name of the workflow
-          minLength: 1
-          maxLength: 255
-        description:
-          type: string
-          description: A detailed description of what the workflow does
-          maxLength: 2000
-        category:
-          type: string
-          description: The category or group for the workflow
-        trigger_type:
-          type: string
-          description: How the workflow is triggered for execution
-          enum:
-          - manual
-          - scheduled
-          - event
-          - api
-        schedule:
-          type: string
-          description: Cron expression for scheduled workflows. Required when trigger_type is scheduled.
     WorkflowList:
       type: object
       description: A paginated list of workflows
@@ -283,71 +269,6 @@ components:
           description: The list of workflows for the current page
         pagination:
           $ref: '#/components/schemas/Pagination'
-    WorkflowStep:
-      type: object
-      description: A single processing step within a workflow. Steps are executed in sequence and each performs a specific data processing operation.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the step
-        name:
-          type: string
-          description: The display name of the step
-        type:
-          type: string
-          description: The type of processing operation the step performs
-          enum:
-          - extraction
-          - transformation
-          - validation
-          - enrichment
-          - routing
-          - notification
-          - export
-          - custom
-        position:
-          type: integer
-          description: The position of the step in the workflow sequence (0-based)
-          minimum: 0
-        configuration:
-          type: object
-          description: Type-specific configuration parameters for the step
-          additionalProperties: true
-        enabled:
-          type: boolean
-          description: Whether the step is enabled for execution
-          default: true
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
-    Pagination:
-      type: object
-      description: Pagination information for list responses
-      properties:
-        page:
-          type: integer
-          description: The current page number
-        page_size:
-          type: integer
-          description: The number of items per page
-        total_items:
-          type: integer
-          description: The total number of items across all pages
-        total_pages:
-          type: integer
-          description: The total number of pages
     Workflow:
       type: object
       description: A workflow definition that describes a multi-step data processing pipeline in the Xceptor platform.
@@ -399,6 +320,85 @@ components:
         created_by:
           type: string
           description: The identifier of the user who created the workflow
+    WorkflowCreate:
+      type: object
+      description: Request body for creating a new workflow
+      required:
+      - name
+      - trigger_type
+      properties:
+        name:
+          type: string
+          description: The display name of the workflow
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          description: A detailed description of what the workflow does
+          maxLength: 2000
+        category:
+          type: string
+          description: The category or group for the workflow
+        trigger_type:
+          type: string
+          description: How the workflow is triggered for execution
+          enum:
+          - manual
+          - scheduled
+          - event
+          - api
+        schedule:
+          type: string
+          description: Cron expression for scheduled workflows. Required when trigger_type is scheduled.
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
+    WorkflowStep:
+      type: object
+      description: A single processing step within a workflow. Steps are executed in sequence and each performs a specific data processing operation.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the step
+        name:
+          type: string
+          description: The display name of the step
+        type:
+          type: string
+          description: The type of processing operation the step performs
+          enum:
+          - extraction
+          - transformation
+          - validation
+          - enrichment
+          - routing
+          - notification
+          - export
+          - custom
+        position:
+          type: integer
+          description: The position of the step in the workflow sequence (0-based)
+          minimum: 0
+        configuration:
+          type: object
+          description: Type-specific configuration parameters for the step
+          additionalProperties: true
+        enabled:
+          type: boolean
+          description: Whether the step is enabled for execution
+          default: true
   securitySchemes:
     bearerAuth:
       type: http
