@@ -290,6 +290,10 @@ apis:
   - type: Authentication
     url: https://docs.xceptor.com/api/authentication
 common:
+  - type: Plans
+    url: plans/xceptor-plans-pricing.yml
+  - type: FinOps
+    url: finops/xceptor-finops.yml
   - type: AgenticAccess
     url: agentic-access/xceptor-agentic-access.yml
   - type: DomainSecurity
