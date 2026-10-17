@@ -90,90 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    BoundingBox:
-      type: object
-      description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
-      properties:
-        x:
-          type: number
-          description: The x-coordinate of the top-left corner
-          minimum: 0.0
-          maximum: 1.0
-        y:
-          type: number
-          description: The y-coordinate of the top-left corner
-          minimum: 0.0
-          maximum: 1.0
-        width:
-          type: number
-          description: The width of the bounding box
-          minimum: 0.0
-          maximum: 1.0
-        height:
-          type: number
-          description: The height of the bounding box
-          minimum: 0.0
-          maximum: 1.0
-    ExtractedField:
-      type: object
-      description: A single field extracted from a document with its value and metadata
-      properties:
-        name:
-          type: string
-          description: The name of the extracted field
-        value:
-          description: The extracted value of the field
-        data_type:
-          type: string
-          description: The data type of the extracted value
-          enum:
-          - string
-          - number
-          - date
-          - currency
-          - boolean
-        confidence:
-          type: number
-          description: The confidence score for this extraction (0.0 to 1.0)
-          minimum: 0.0
-          maximum: 1.0
-        page_number:
-          type: integer
-          description: The page number where the field was found
-          minimum: 1
-        bounding_box:
-          $ref: '#/components/schemas/BoundingBox'
-        requires_review:
-          type: boolean
-          description: Whether this field requires manual review due to low confidence
-    ExtractedTable:
-      type: object
-      description: A table extracted from a document with its rows and column headers
-      properties:
-        name:
-          type: string
-          description: The name or label of the extracted table
-        headers:
-          type: array
-          items:
-            type: string
-          description: The column headers of the extracted table
-        rows:
-          type: array
-          items:
-            type: array
-            items:
-              description: A cell value in the table row
-          description: The data rows of the extracted table
-        confidence:
-          type: number
-          description: The confidence score for the table extraction (0.0 to 1.0)
-          minimum: 0.0
-          maximum: 1.0
-        page_number:
-          type: integer
-          description: The page number where the table was found
-          minimum: 1
     Document:
       type: object
       description: A document that has been uploaded to the Xceptor platform for intelligent data extraction and processing.
@@ -245,6 +161,58 @@ components:
           type: object
           description: Additional error details when available
           additionalProperties: true
+    ExtractedTable:
+      type: object
+      description: A table extracted from a document with its rows and column headers
+      properties:
+        name:
+          type: string
+          description: The name or label of the extracted table
+        headers:
+          type: array
+          items:
+            type: string
+          description: The column headers of the extracted table
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              description: A cell value in the table row
+          description: The data rows of the extracted table
+        confidence:
+          type: number
+          description: The confidence score for the table extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        page_number:
+          type: integer
+          description: The page number where the table was found
+          minimum: 1
+    BoundingBox:
+      type: object
+      description: The bounding box coordinates of an extracted element on the document page, in normalized coordinates (0.0 to 1.0).
+      properties:
+        x:
+          type: number
+          description: The x-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        y:
+          type: number
+          description: The y-coordinate of the top-left corner
+          minimum: 0.0
+          maximum: 1.0
+        width:
+          type: number
+          description: The width of the bounding box
+          minimum: 0.0
+          maximum: 1.0
+        height:
+          type: number
+          description: The height of the bounding box
+          minimum: 0.0
+          maximum: 1.0
     ExtractionResult:
       type: object
       description: The data extraction results for a processed document, including all extracted fields, tables, and their confidence scores.
@@ -291,6 +259,38 @@ components:
           type: string
           format: date-time
           description: The date and time the extraction was performed
+    ExtractedField:
+      type: object
+      description: A single field extracted from a document with its value and metadata
+      properties:
+        name:
+          type: string
+          description: The name of the extracted field
+        value:
+          description: The extracted value of the field
+        data_type:
+          type: string
+          description: The data type of the extracted value
+          enum:
+          - string
+          - number
+          - date
+          - currency
+          - boolean
+        confidence:
+          type: number
+          description: The confidence score for this extraction (0.0 to 1.0)
+          minimum: 0.0
+          maximum: 1.0
+        page_number:
+          type: integer
+          description: The page number where the field was found
+          minimum: 1
+        bounding_box:
+          $ref: '#/components/schemas/BoundingBox'
+        requires_review:
+          type: boolean
+          description: Whether this field requires manual review due to low confidence
   parameters:
     DocumentIdParam:
       name: documentId

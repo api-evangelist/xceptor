@@ -90,20 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: An error response from the Xceptor API
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code
-        message:
-          type: string
-          description: A human-readable description of the error
-        details:
-          type: object
-          description: Additional error details when available
-          additionalProperties: true
     AccessToken:
       type: object
       description: An OAuth2 access token for authenticating API requests
@@ -122,6 +108,20 @@ components:
         scope:
           type: string
           description: The scope of access granted by the token
+    Error:
+      type: object
+      description: An error response from the Xceptor API
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code
+        message:
+          type: string
+          description: A human-readable description of the error
+        details:
+          type: object
+          description: Additional error details when available
+          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
